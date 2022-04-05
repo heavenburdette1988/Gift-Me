@@ -1,17 +1,20 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserContext } from "../../providers/UserProviders";
 
 export default function Register() {
   const navigate = useNavigate();
-  const { register } = useContext(UserProfileContext);
+  const { register } = useContext(UserContext);
 
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [displayName, setDisplayName] = useState();
   const [email, setEmail] = useState();
   const [imageLocation, setImageLocation] = useState();
+  const [about, setAbout] = useState();
+  const [dateOfBirth, setDateOfBirth] = useState();
+  const [CreateDateTime, setCreateDateTime] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
@@ -20,7 +23,7 @@ export default function Register() {
       if (password && password !== confirmPassword) {
         alert("Passwords don't match. Do better.");
       } else {
-        const userProfile = { firstName, lastName, displayName, imageLocation, email };
+        const userProfile = { firstName, lastName, displayName, imageLocation, email, about, dateOfBirth, CreateDateTime  };
         register(userProfile, password)
           .then(() => navigate("/"));
       }
@@ -49,6 +52,15 @@ export default function Register() {
         <FormGroup>
           <Label htmlFor="imageLocation">Profile Image URL</Label>
           <Input id="imageLocation" type="text" onChange={e => setImageLocation(e.target.value)} />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="dateOfBirth">Date Of Birth</Label>
+          <Input id="dateOfBirth" type="date" onChange={e => setDateOfBirth(e.target.value)} />
+        </FormGroup>
+        <Label htmlFor="About">About</Label>
+        <FormGroup>
+                   <textarea id="about" rows="5
+          " Cols="100" onChange={e => setAbout(e.target.value)} />
         </FormGroup>
         <FormGroup>
           <Label for="password">Password</Label>

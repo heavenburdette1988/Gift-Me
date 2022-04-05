@@ -1,14 +1,12 @@
 
-import Login from "./Login";
-import Register from "./Register";
-import { UserProfileContext } from "../providers/UserProviders";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
+import { UserContext, UserProvider } from "../providers/UserProviders";
 
 import React, { useContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import {
-  UserContext,
-  UserProvider,
-} from "../providers/UserProvider";
+
+
 
 
 
@@ -29,8 +27,8 @@ export default function ApplicationViews() {
        <UserProvider>
       
             <Routes>
-            <Route path="/" element={<Hello />} />
-            <Route path="/users" element={<UserList />} />
+            {/* <Route path="/" element={<Hello />} />
+            <Route path="/users" element={<UserList />} /> */}
            
             
           </Routes>

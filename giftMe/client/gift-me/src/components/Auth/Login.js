@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, Link } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserContext } from "../../providers/UserProviders";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login } = useContext(UserProfileContext);
+  const { login } = useContext(UserContext);
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
