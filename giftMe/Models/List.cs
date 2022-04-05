@@ -14,10 +14,10 @@ namespace giftMe.Models
         [Required]
         public int GiftId { get; set; } 
 
-        public Gifts Gifts { get; set; }
+        public Gift Gifts { get; set; }
         [Required]
         public int TypeId { get; set; }
 
-        public Types Types { get; set; }
+        public Type Types { get; set; }
     }
 }

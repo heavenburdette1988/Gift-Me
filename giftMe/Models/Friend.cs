@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace giftMe.Models
 {
-    public class Friends
+    public class Friend
     {
         public int Id { get; set; }
         [Required]

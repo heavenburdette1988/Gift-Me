@@ -2,7 +2,7 @@
 
 namespace giftMe.Models
 {
-    public class Events
+    public class Event
     {
         public int Id { get; set; }
 
@@ -14,7 +14,7 @@ namespace giftMe.Models
 
         public int TypeId { get; set; }
 
-        public Types Types { get; set; }
+        public Type Types { get; set; }
 
         public int UserId { get; set; }
 

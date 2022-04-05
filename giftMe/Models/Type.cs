@@ -1,6 +1,6 @@
 ﻿namespace giftMe.Models
 {
-    public class Types
+    public class Type
     {
         public int Id { get; set; }
 

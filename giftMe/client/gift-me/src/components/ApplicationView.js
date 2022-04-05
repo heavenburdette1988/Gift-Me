@@ -5,6 +5,8 @@ import { UserContext, UserProvider } from "../providers/UserProviders";
 
 import React, { useContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { GiftList } from "./gifts/GiftList";
+import { GiftProvider } from "../providers/GiftProvider";
 
 
 
@@ -25,14 +27,13 @@ export default function ApplicationViews() {
     else{
      return(
        <UserProvider>
-      
+      <GiftProvider>
             <Routes>
-            {/* <Route path="/" element={<Hello />} />
-            <Route path="/users" element={<UserList />} /> */}
-           
-            
+    
+            <Route path="/gifts" element={<GiftList />} /> 
+                       
           </Routes>
-       
+          </GiftProvider>
       </UserProvider>
   
   

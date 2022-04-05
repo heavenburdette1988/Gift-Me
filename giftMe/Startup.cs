@@ -30,6 +30,7 @@ namespace giftMe
 
             services.AddControllers();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IGiftRepository, GiftRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "giftMe", Version = "v1" });

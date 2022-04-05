@@ -2,7 +2,7 @@
 
 namespace giftMe.Models
 {
-    public class Gifts
+    public class Gift
     {
          public int Id { get; set; }
 
@@ -14,7 +14,7 @@ namespace giftMe.Models
         public string Title { get; set; }
 
         public string Url { get; set; }
-        public string Imagelocation { get; set; }
+        public string ImageLocation { get; set; }
         public string Notes { get; set; }
         
         [Required]
@@ -24,9 +24,9 @@ namespace giftMe.Models
 
         public UserProfile UserProfile { get; set; }
 
-        public int TyoesId { get; set; }
+        public int TypesId { get; set; }
 
-        public Types Types { get; set; }
+        public Type Types { get; set; }
 
 
     }

@@ -10,12 +10,12 @@ const Header = () => {
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <Link to="/" className="nav-link">
-            Feed
+            Explore
           </Link>
         </li>
         <li className="nav-item">
           <Link to="/posts/add" className="nav-link">
-            New Post
+          User Dashboard
           </Link>
         </li>
       </ul>
