@@ -7,6 +7,7 @@ import React, { useContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { GiftList } from "./gifts/GiftList";
 import { GiftProvider } from "../providers/GiftProvider";
+import { GiftForm } from "./gifts/GiftForm";
 
 
 
@@ -31,6 +32,7 @@ export default function ApplicationViews() {
             <Routes>
     
             <Route path="/gifts" element={<GiftList />} /> 
+            <Route path="/add/gifts" element={<GiftForm />} /> 
                        
           </Routes>
           </GiftProvider>

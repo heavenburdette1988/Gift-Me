@@ -26,7 +26,7 @@ return (
     
 <div className="gift">
       {console.log("GiftList: Render", Gifts)}
-      <Button outline onClick={() => navigate(`/add/Gifts/`)}>
+      <Button outline onClick={() => navigate(`/add/gifts/`)}>
     Create New
   </Button>
   {' '}  

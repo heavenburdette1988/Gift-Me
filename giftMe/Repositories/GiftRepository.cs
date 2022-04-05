@@ -40,6 +40,8 @@ namespace giftMe.Repositories
                             Url = DbUtils.GetString(reader, "GiftURL"),
                             ImageLocation = DbUtils.GetString(reader, "GiftImageUrl"),
                             UserId = DbUtils.GetInt(reader, "GiftUserId"),
+                            ItemReceived = reader.GetBoolean(reader.GetOrdinal( "GiftItemReceived")),
+                            TypesId = DbUtils.GetInt(reader, "GiftType"),
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "GiftUserId"),
@@ -87,6 +89,7 @@ namespace giftMe.Repositories
                             Title = DbUtils.GetString(reader, "GiftTitle"),
                             Notes = DbUtils.GetString(reader, "giftNotes"),
                             TypesId = DbUtils.GetInt(reader, "GiftType"),
+                            ItemReceived = reader.GetBoolean(reader.GetOrdinal("GiftItemReceived")),
                             Quantity = DbUtils.GetInt(reader, "GiftQuantity"),
                             Url = DbUtils.GetString(reader, "GiftURL"),
                             ImageLocation = DbUtils.GetString(reader, "GiftImageUrl"),
@@ -118,17 +121,17 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Gift (Title, ItemReceived, Url, ImageLocation, UserId, Quantity,TypesId, Notes)
+                        INSERT INTO Gifts (Title, ItemReceived, Url, ImageLocation, UserId, Quantity,TypesId, Notes)
                         OUTPUT INSERTED.ID
                         VALUES (@Title, @ItemReceived, @Url, @ImageLocation, @UserId, @Quantity, @TypesId, @Notes)";
 
                     DbUtils.AddParameter(cmd, "@Title", gift.Title);
-                    DbUtils.AddParameter(cmd, "@ItemReceived", 0);
+                    DbUtils.AddParameter(cmd, "@ItemReceived", false);
                     DbUtils.AddParameter(cmd, "@Url", gift.Url);
                     DbUtils.AddParameter(cmd, "@ImageLocation", gift.ImageLocation);
                     DbUtils.AddParameter(cmd, "@UserId", gift.UserId);
                     DbUtils.AddParameter(cmd, "@Quantity", gift.Quantity);
-                    DbUtils.AddParameter(cmd, "@TypesId", gift.TypesId);
+                    DbUtils.AddParameter(cmd, "@TypesId", 1);
                     DbUtils.AddParameter(cmd, "@Notes", gift.Notes);
 
                     gift.Id = (int)cmd.ExecuteScalar();

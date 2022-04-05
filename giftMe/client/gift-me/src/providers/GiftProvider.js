@@ -15,8 +15,20 @@ export const GiftProvider =(props) =>{
       .then(setGifts);
   };
 
+  const addGift = (gift) => {
+    return fetch(`${apiUrl}/api/Gift`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(gift)
+   
+    }).then(getAllGifts);
+  
+  };  
+
   const getGifts = (id) => {
-    return fetch(`${apiUrl}/api/UserProfile/${id}`)
+    return fetch(`${apiUrl}/api/gifts/${id}`)
     .then((res) => res.json());
 };
 
@@ -24,7 +36,7 @@ export const GiftProvider =(props) =>{
   
 
   return (
-    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts }}>
+    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts, addGift, getGifts }}>
        {props.children}
     </GiftContext.Provider>
   );

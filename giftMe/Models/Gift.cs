@@ -7,7 +7,7 @@ namespace giftMe.Models
          public int Id { get; set; }
 
         [Required]
-        public string ItemReceived { get; set; }
+        public bool ItemReceived { get; set; }
 
         [Required]
 

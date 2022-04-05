@@ -1,4 +1,5 @@
-﻿using giftMe.Repositories;
+﻿using giftMe.Models;
+using giftMe.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -32,14 +33,17 @@ namespace giftMe.Controllers
                 return "value";
             }
 
-            // POST api/<GiftController>
-            [HttpPost]
-            public void Post([FromBody] string value)
-            {
-            }
+        // POST api/<GiftController>
+        [HttpPost("addToGift")]
+        public IActionResult Gift(Gift gift)
+        {
+            _giftRepository.AddGift(gift);
+          //This is the controller that posts to gift by calling addGift Method
+            return NoContent();
+        }
 
-            // PUT api/<GiftController>/5
-            [HttpPut("{id}")]
+        // PUT api/<GiftController>/5
+        [HttpPut("{id}")]
             public void Put(int id, [FromBody] string value)
             {
             }
