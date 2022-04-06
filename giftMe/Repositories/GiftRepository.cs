@@ -41,6 +41,7 @@ namespace giftMe.Repositories
                             ImageLocation = DbUtils.GetString(reader, "GiftImageUrl"),
                             UserId = DbUtils.GetInt(reader, "GiftUserId"),
                             ItemReceived = reader.GetBoolean(reader.GetOrdinal( "GiftItemReceived")),
+                            Quantity = DbUtils.GetInt(reader, "GiftQuantity"),
                             TypesId = DbUtils.GetInt(reader, "GiftType"),
                             UserProfile = new UserProfile()
                             {
@@ -129,7 +130,7 @@ namespace giftMe.Repositories
                     DbUtils.AddParameter(cmd, "@ItemReceived", false);
                     DbUtils.AddParameter(cmd, "@Url", gift.Url);
                     DbUtils.AddParameter(cmd, "@ImageLocation", gift.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@UserId", gift.UserId);
+                    DbUtils.AddParameter(cmd, "@UserId", 1);
                     DbUtils.AddParameter(cmd, "@Quantity", gift.Quantity);
                     DbUtils.AddParameter(cmd, "@TypesId", 1);
                     DbUtils.AddParameter(cmd, "@Notes", gift.Notes);

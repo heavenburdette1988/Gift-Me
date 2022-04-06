@@ -40,7 +40,7 @@ export const GiftForm = () => {
             alert("Please fill out the title and/or quantity url fields.")
   
         } else {
-            debugger
+          debugger
             addGift(gift)
             .then(navigate("/userDashboard"));
      }

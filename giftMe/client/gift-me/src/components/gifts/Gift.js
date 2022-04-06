@@ -10,7 +10,7 @@ const Gift = ({ giftProp }) => {
   
   const navigate = useNavigate();
   
-
+console.log(giftProp.quantity,"qqqqq")
   return (
   
 <Card style={{ width: '18rem' }}>

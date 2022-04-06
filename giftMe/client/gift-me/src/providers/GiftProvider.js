@@ -16,7 +16,7 @@ export const GiftProvider =(props) =>{
   };
 
   const addGift = (gift) => {
-    debugger
+   debugger
     return fetch(`${apiUrl}/api/Gift/addToGift`, {
       method: "POST",
       headers: {
