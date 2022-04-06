@@ -8,7 +8,14 @@ export const GiftForm = () => {
 
     const {getAllGifts,addGift} = useContext(GiftContext)
 
-    const [gift, setGift] = useState({ });
+    const [gift, setGift] = useState({ 
+        // title: "",
+        // quantity:0,
+        // notes: "",
+        // url: "",
+        // imageLocation: "",
+        
+    });
 
     const navigate = useNavigate();
 
@@ -26,15 +33,16 @@ export const GiftForm = () => {
 
     const handleSaveGift = (event) => {
         event.preventDefault()
-        debugger
-        if(gift.title ==="" || gift.quantity === null )
+ 
+  console.log(gift.title)
+        if(gift.title === undefined || gift.quantity === undefined )
         {
             alert("Please fill out the title and/or quantity url fields.")
   
         } else {
-            
+            debugger
             addGift(gift)
-            .then(navigate("/Gifts"));
+            .then(navigate("/userDashboard"));
      }
       
     }
@@ -53,7 +61,7 @@ export const GiftForm = () => {
            <fieldset>
                 <div className="formGroup">
                 <label htmlFor="url">Item Url:</label>
-                <input type="text" id="Url"  placeholder="Item Url" onChange={handleControlledInputChange} required className="form-control"  value={gift.url}/>
+                <input type="text" id="url"  placeholder="Item Url" onChange={handleControlledInputChange} required className="form-control"  value={gift.url}/>
                 </div>
             </fieldset>
             <fieldset>

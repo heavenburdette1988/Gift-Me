@@ -31,7 +31,7 @@ export default function ApplicationViews() {
       <GiftProvider>
             <Routes>
     
-            <Route path="/gifts" element={<GiftList />} /> 
+            <Route path="/userDashboard" element={<GiftList />} /> 
             <Route path="/add/gifts" element={<GiftForm />} /> 
                        
           </Routes>

@@ -15,7 +15,7 @@ export default function Login() {
     login({email, password})
       .then(r =>{
       if(r){
-      navigate("/gifts")
+      navigate("/userDashboard")
       //navigating to gifts for now but will need to navigate to user Dashboard
       }
       else{
