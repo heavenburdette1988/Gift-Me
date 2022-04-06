@@ -35,7 +35,7 @@ const Gift = ({ giftProp }) => {
  <p> Quantity Needed: {giftProp.quantity}</p>
   </Card.Text>
 
-  <Button variant="primary">Edit</Button>
+  <Button variant="primary" onClick={() => navigate(`/gifts/edit/${giftProp.id}`)}>Edit</Button>
   <Button
     color="danger"
     outline

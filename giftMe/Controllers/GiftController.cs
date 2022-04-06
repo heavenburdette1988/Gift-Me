@@ -26,13 +26,17 @@ namespace giftMe.Controllers
                 return Ok(_giftRepository.GetAllGifts());
             }
 
-            // GET api/<GiftController>/5
-            [HttpGet("{id}")]
-            public string Get(int id)
+        // GET api/<GiftController>/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var gift = _giftRepository.GetGiftById(id);
+            if (gift == null)
             {
-                return "value";
+                return NotFound();
             }
-
+            return Ok(gift);
+        }
         // POST api/<GiftController>
         [HttpPost("addToGift")]
         public IActionResult Gift(Gift gift)
@@ -44,9 +48,17 @@ namespace giftMe.Controllers
 
         // PUT api/<GiftController>/5
         [HttpPut("{id}")]
-            public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id,Gift gift)
+        {
+            if (id != gift.Id)
             {
+                return BadRequest();
             }
+
+            _giftRepository.UpdateGift(gift);
+            return NoContent();
+        }
+
 
         // DELETE api/<GiftController>/5
         [HttpDelete("{id}")]

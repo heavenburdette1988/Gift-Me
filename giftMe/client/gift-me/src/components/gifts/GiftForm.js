@@ -1,31 +1,38 @@
 import React, {useContext, useEffect, useState} from "react"
 import { GiftContext } from "../../providers/GiftProvider"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Gift from "./Gift";
 
 
 export const GiftForm = () => {
 
-    const {getAllGifts,addGift} = useContext(GiftContext)
+    const {getAllGifts, addGift, getGiftById, updateGift} = useContext(GiftContext)
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
     const currentUserId = currentUser.id
 
-    const [gift, setGift] = useState({ 
+    const [gift, setGift] = useState({
         title: "",
-        quantity:0,
-        notes: "",
-        url: "",
-        imageLocation: "",
-        userId: currentUserId,
-    
-                
-    });
+    quantity:0,
+    notes: "",
+    url: "",
+    imageLocation: "",
+    userId: currentUserId, });
 
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
-
+    const {giftId} = useParams();
+console.log(giftId, "giftId")
     useEffect(()=> {
-        getAllGifts()
-    }, []);
+        if(giftId){
+            getGiftById(giftId)
+            .then(gift => {
+              setGift(gift)
+              setIsLoading(false)
+            })
+          } else {
+            setIsLoading (false)
+       
+    }}, []);
 
    
     const handleControlledInputChange = (event)=> {
@@ -36,21 +43,35 @@ export const GiftForm = () => {
     }
 
     const handleSaveGift = (event) => {
-        event.preventDefault()
+        
  
   console.log(gift.title)
         if(gift.title === undefined || gift.quantity === undefined )
         {
             alert("Please fill out the title and/or quantity url fields.")
-  
+        }else{
+            setIsLoading(true);
+           }   if (giftId){
+                //PUT - update
+               
+                updateGift({
+                id: gift.id,
+                title: gift.title,
+                quantity: +gift.quantity,
+                notes: gift.notes,
+                url: gift.url,
+                imageLocation: gift.imageLocation,
+                typesId: +gift.typesId,
+                userId: +currentUserId,})
+                .then(()=> navigate("/userDashboard"))
         } else {
-          debugger
+         
             addGift(gift)
             .then(navigate("/userDashboard"));
      }
-      
+    
     }
-
+    
     
     return(
         <form className="giftForm">
@@ -88,8 +109,11 @@ export const GiftForm = () => {
             </fieldset>                                 
             <div className="form-group row col-sm-12 mx-auto mb-3">
                     <div className="col-sm-12">
-                        <button type="submit" className="btn btn-primary" onClick={handleSaveGift}>
-                            Save Gift
+                        <button type="submit" className="btn btn-primary"  disabled={isLoading} 
+                               onClick={event => {
+                                event.preventDefault()
+                                 handleSaveGift()}}>
+                          {giftId ? <>Save Gift</>:<> Add Tag</>}
                         </button>
                         <button type="submit" className="btn btn-primary" onClick={() => navigate("/userDashboard")}>
                             Back to List
@@ -98,4 +122,4 @@ export const GiftForm = () => {
                     </div>
         </form>
     )
-}
+    }

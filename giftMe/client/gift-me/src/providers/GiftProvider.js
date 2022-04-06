@@ -33,6 +33,24 @@ export const GiftProvider =(props) =>{
     .then((res) => res.json());
 };
 
+const getGiftById = (id) => {
+    
+  return fetch(`${apiUrl}/api/Gift/${id}`)
+      .then(res => res.json())
+
+}
+
+
+const updateGift = gift => {
+  return fetch(`${apiUrl}/api/Gift/${gift.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(gift)
+  })
+    .then(getAllGifts)
+}
 
 const deleteGift = (giftId) => {
 
@@ -44,7 +62,7 @@ const deleteGift = (giftId) => {
 
 
   return (
-    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift }}>
+    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift, updateGift, getGiftById }}>
        {props.children}
     </GiftContext.Provider>
   );

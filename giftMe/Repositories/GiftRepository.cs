@@ -69,7 +69,7 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                          SELECT g.Id AS GiftId, g.Title, g.ItemReceived as GiftItemReceived, g.title as GiftTitle, g.Url as GiftURl 
+                          SELECT g.Id AS GiftId, g.Title, g.ItemReceived as GiftItemReceived, g.title as GiftTitle, g.Url as GiftURl, 
                        g.ImageLocation AS GiftImageUrl, g.UserId as GiftUserId, g.Notes as giftNotes,g.Quantity as GiftQuantity, g.TypesId as GiftType,
                        up.DisplayName as UserDisplayName, up.About as UserAbout, up.Email as UserEmail, up.CreateDateTime AS UserProfileDateCreated, 
                        up.ImageLocation AS UserProfileImageUrl
@@ -99,7 +99,7 @@ namespace giftMe.Repositories
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "GiftUserId"),
-                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                DisplayName = DbUtils.GetString(reader, "UserDisplayName"),
                                 Email = DbUtils.GetString(reader, "UserEmail"),
                                 CreateDateTime = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
                                 ImageLocation = DbUtils.GetString(reader, "UserProfileImageUrl"),
@@ -148,14 +148,14 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        UPDATE Gift
+                        UPDATE Gifts
                            SET Title = @Title,
                                ItemReceived = @ItemReceived,
                                Url = @Url,
                                ImageLocation = @ImageLocation,
-                               UserId = @UserId
-                               Quantity = @Quantity
-                               TypesId = @TypesId
+                               UserId = @UserId,
+                               Quantity = @Quantity,
+                               TypesId = @TypesId,
                                Notes = @Notes
 
                          WHERE Id = @Id";
