@@ -91,6 +91,9 @@ export const GiftForm = () => {
                         <button type="submit" className="btn btn-primary" onClick={handleSaveGift}>
                             Save Gift
                         </button>
+                        <button type="submit" className="btn btn-primary" onClick={() => navigate("/userDashboard")}>
+                            Back to List
+                        </button>
                     </div>
                     </div>
         </form>

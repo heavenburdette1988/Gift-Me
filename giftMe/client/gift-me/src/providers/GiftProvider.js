@@ -34,10 +34,17 @@ export const GiftProvider =(props) =>{
 };
 
 
-  
+const deleteGift = (giftId) => {
+
+  return fetch(`${apiUrl}/api/Gift/${giftId}`, {
+      method: "DELETE"
+  })
+      .then(getAllGifts)
+}
+
 
   return (
-    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts, addGift, getGifts }}>
+    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift }}>
        {props.children}
     </GiftContext.Provider>
   );

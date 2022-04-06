@@ -182,7 +182,7 @@ namespace giftMe.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Gift WHERE Id = @Id";
+                    cmd.CommandText = "DELETE FROM Gifts WHERE Id = @Id";
                     DbUtils.AddParameter(cmd, "@id", id);
                     cmd.ExecuteNonQuery();
                 }

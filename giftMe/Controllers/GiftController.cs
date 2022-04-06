@@ -48,11 +48,13 @@ namespace giftMe.Controllers
             {
             }
 
-            // DELETE api/<GiftController>/5
-            [HttpDelete("{id}")]
-            public void Delete(int id)
-            {
-            }
+        // DELETE api/<GiftController>/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _giftRepository.DeleteGift(id);
+            return NoContent();
         }
+    }
     }
 
