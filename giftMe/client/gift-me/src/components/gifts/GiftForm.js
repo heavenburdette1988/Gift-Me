@@ -7,14 +7,18 @@ import Gift from "./Gift";
 export const GiftForm = () => {
 
     const {getAllGifts,addGift} = useContext(GiftContext)
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"));
+    const currentUserId = currentUser.id
 
     const [gift, setGift] = useState({ 
-        // title: "",
-        // quantity:0,
-        // notes: "",
-        // url: "",
-        // imageLocation: "",
-        
+        title: "",
+        quantity:0,
+        notes: "",
+        url: "",
+        imageLocation: "",
+        userId: currentUserId,
+    
+                
     });
 
     const navigate = useNavigate();
