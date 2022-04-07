@@ -3,13 +3,14 @@ import React, {useContext, useState,  } from "react";
 
 import {   useNavigate,   } from "react-router-dom";
 
-import { Button, Card,Modal } from 'react-bootstrap';
+import { Button, Card,InputGroup,Modal } from 'react-bootstrap';
 import { GiftContext } from "../../providers/GiftProvider";
 
+import { Form,  } from "react-bootstrap";
 
 const Gift = ({ giftProp }) => {
 
-  const {deleteGift} = useContext(GiftContext)
+  const {deleteGift, getAllGifts, patchTask} = useContext(GiftContext)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,6 +22,18 @@ const Gift = ({ giftProp }) => {
     deleteGift(giftProp.id) 
         navigate(handleClose)            
   }
+  
+  const handleReceived = () => {
+
+  if (giftProp.itemReceived === true) {
+      patchTask(giftProp.id, false)
+           .then(getAllGifts) 
+          } else {
+            patchTask(giftProp.id, true)
+            .then(getAllGifts) 
+          }
+          
+           }
   
 
   return (
@@ -44,8 +57,14 @@ const Gift = ({ giftProp }) => {
     Delete
   </Button>
 </Card.Body>
+<InputGroup className="mb-3">
 
-
+            <Form.Check
+           type="switch"
+    id="itemReceived"
+    onChange={handleReceived} required  className="form-control" />{giftProp.itemReceived === false ? <>Mark item when received</> : <>Mark item as not received</>}
+ </InputGroup>  
+  
 
 
       <Modal show={show} onHide={handleClose}>

@@ -60,9 +60,22 @@ const deleteGift = (giftId) => {
       .then(getAllGifts)
 }
 
+const patchTask = (giftId, itemReceived) => {
+  // https://localhost:44392/api/Gift/23?ItemReceived=true
+  return fetch(`${apiUrl}/api/Gift/${giftId}?ItemReceived=${itemReceived}`, {
+      method: "PATCH",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      
+      body: JSON.stringify({itemReceived: itemReceived})
+  })
+  
+}
+
 
   return (
-    <GiftContext.Provider value={{ getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift, updateGift, getGiftById }}>
+    <GiftContext.Provider value={{ patchTask, getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift, updateGift, getGiftById }}>
        {props.children}
     </GiftContext.Provider>
   );

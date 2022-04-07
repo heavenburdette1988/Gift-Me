@@ -59,6 +59,15 @@ namespace giftMe.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id}")]
+        public IActionResult Patch( int id, bool ItemReceived)
+        {
+            
+          //map body of requests to a gift object - gift.itemRecieved
+            _giftRepository.UpdateItemReceived(id, ItemReceived);
+            return NoContent();
+        }
+
 
         // DELETE api/<GiftController>/5
         [HttpDelete("{id}")]

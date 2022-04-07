@@ -62,6 +62,7 @@ console.log(giftId, "giftId")
                 url: gift.url,
                 imageLocation: gift.imageLocation,
                 typesId: +gift.typesId,
+                itemReceived: gift.itemReceived,
                 userId: +currentUserId,})
                 .then(()=> navigate("/userDashboard"))
         } else {
@@ -106,14 +107,15 @@ console.log(giftId, "giftId")
                 <label htmlFor="quantity">Quantity:</label>
                 <input type="number" id="quantity" placeholder="input the number of items requested" onChange={handleControlledInputChange} required  className="form-control" value={gift.quantity}/>
                 </div>
-            </fieldset>                                 
+            </fieldset>
+            
             <div className="form-group row col-sm-12 mx-auto mb-3">
                     <div className="col-sm-12">
                         <button type="submit" className="btn btn-primary"  disabled={isLoading} 
                                onClick={event => {
                                 event.preventDefault()
                                  handleSaveGift()}}>
-                          {giftId ? <>Save Gift</>:<> Add Tag</>}
+                          {giftId ? <>Save Gift</>:<> Add Gift</>}
                         </button>
                         <button type="submit" className="btn btn-primary" onClick={() => navigate("/userDashboard")}>
                             Back to List

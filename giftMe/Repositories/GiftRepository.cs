@@ -20,12 +20,13 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT g.Id AS GiftId, g.Title, g.ItemReceived as GiftItemReceived, g.title as GiftTitle, 
+               SELECT g.Id AS GiftId, g.Title, g.ItemReceived as GiftItemReceived, g.title as GiftTitle, 
                        g.ImageLocation AS GiftImageUrl, g.Quantity as GiftQuantity, g.TypesId as GiftType, g.URL as GiftURL, g.UserId as GiftUserId, g.Notes as giftNotes,
                        up.DisplayName as UserDisplayName, up.About as UserAbout, up.Email as UserEmail, up.CreateDateTime AS UserProfileDateCreated, 
                        up.ImageLocation AS UserProfileImageUrl
                   FROM Gifts g 
-                       LEFT JOIN UserProfile up ON up.Id = g.UserId;";
+                       LEFT JOIN UserProfile up ON up.Id = g.UserId
+                       Where up.Id = g.userId and ItemReceived = 0;";
 
                     var reader = cmd.ExecuteReader();
 
@@ -169,6 +170,29 @@ namespace giftMe.Repositories
                     DbUtils.AddParameter(cmd, "@TypesId", gift.TypesId);
                     DbUtils.AddParameter(cmd, "@Notes", gift.Notes);
                     DbUtils.AddParameter(cmd, "@Id", gift.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        public void UpdateItemReceived(int id, bool itemReceived)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE Gifts
+                           SET
+                               ItemReceived = @ItemReceived
+                                WHERE Id = @Id";
+
+                   
+                    DbUtils.AddParameter(cmd, "@ItemReceived", itemReceived);
+                    DbUtils.AddParameter(cmd, "@Id", id);
 
                     cmd.ExecuteNonQuery();
                 }
