@@ -1,6 +1,7 @@
 ﻿using giftMe.Models;
 using giftMe.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -44,11 +45,14 @@ namespace giftMe.Controllers
         public void Put(int id, [FromBody] string value)
         {
         }
-
-        // DELETE api/<FriendController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, DateTime EndDateTime)
         {
+
+            //map body of requests to a gift object - gift.itemRecieved
+            _friendRepository.UpdateFriendShip(id, EndDateTime);
+            return NoContent();
         }
+
     }
 }

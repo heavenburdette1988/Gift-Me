@@ -1,28 +1,38 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { FriendContext } from "../../providers/FriendProvider";
 import { UserContext } from "../../providers/UserProviders";
-import User from "./User";
+import Friend from "../friends/Friend";
+import UserExplore from "./UserExplore";
+import User from "./UserExplore";
 
 export const UserList = () => {
-  const { getAllUserProfiles,userProfiles } = useContext(UserContext);
-  //state varible^^  we do this with info that will change like adding a post to post
-  
-  useEffect(() => {
-    getAllUserProfiles()
-    
-  }, []);
+  const { getAllUserProfiles, userProfiles } = useContext(UserContext);
 
-//Todo: need to filter already followed friend   
+  const { Friends, getAllFriends } = useContext(FriendContext);
+
+  const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+  const myfriendList = Friends.filter(x => x.subscriberUserId === currentUser.id)
+
+  useEffect(() => {
+    getAllUserProfiles().then(getAllFriends)
+
+  }, []);
+  // Filter in map to get user.id == to subscriber and emd datetime
+  //Todo: need to filter already followed friend   
 
   return (
-    
+
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
-          {userProfiles.map((singleUserInLoop) =>  (
-       
-            <User key={singleUserInLoop.id} UserProp={singleUserInLoop} />
+          <h1>Explore Friends</h1>
+          {userProfiles.filter(x => myfriendList.some(y => y.profileUserId !== x.id) && x.id !== currentUser.id).map((singleUserInLoop) => (
+
+            <UserExplore key={singleUserInLoop.id} UserProp={singleUserInLoop} />
           ))}
-   
+
+
+
         </div>
       </div>
     </div>

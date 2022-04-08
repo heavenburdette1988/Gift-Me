@@ -9,13 +9,9 @@ export const FriendProvider =(props) =>{
   const [Friends, setFriends] = useState([]);
  
 
-  const getAllFriend = () => {
-    return fetch(`${apiUrl}/api/Friend`)
-      .then((res) => res.json())
-      .then(setFriends);
-  };
 
-  const getAllFriendByUserProfile = () => {
+
+  const getAllFriends = () => {
       debugger
     return fetch(`${apiUrl}/api/Friend`)
       .then((res) => res.json())
@@ -31,21 +27,11 @@ export const FriendProvider =(props) =>{
       },
       body: JSON.stringify(friend)
    
-    }).then(getAllFriendByUserProfile);
+    }).then(getAllFriends);
   
   };  
 
-  const getFriends = (id) => {
-    return fetch(`${apiUrl}/api/gifts/${id}`)
-    .then((res) => res.json());
-};
 
-const getFriendById = (id) => {
-    
-  return fetch(`${apiUrl}/api/Gift/${id}`)
-      .then(res => res.json())
-
-}
 
 
 
@@ -53,8 +39,8 @@ const getFriendById = (id) => {
 
 //created patch to update the item received field in gifts when gift is received
 const patchFriend = (friendId, EndDate) => {
-  // https://localhost:44392/api/Gift/23?ItemReceived=true
-  return fetch(`${apiUrl}/api/Gift/${friendId}?ItemReceived=${EndDate}`, {
+  // https://localhost:44392/api/Friend/11
+  return fetch(`${apiUrl}/api/Friend/${friendId}`, {
       method: "PATCH",
       headers: {
           "Content-Type": "application/json"
@@ -68,7 +54,7 @@ const patchFriend = (friendId, EndDate) => {
 
 
   return (
-    <FriendContext.Provider value={{getAllFriendByUserProfile, Friends, addFriend  }}>
+    <FriendContext.Provider value={{patchFriend,getAllFriends, Friends, addFriend  }}>
        {props.children}
     </FriendContext.Provider>
   );

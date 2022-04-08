@@ -3,17 +3,17 @@ import { FriendContext } from "../../providers/FriendProvider";
 import Friend from "./Friend";
 
 export const FriendList = () => {
-  const { Friends, getAllFriendByUserProfile } = useContext(FriendContext);
+  const { Friends, getAllFriends } = useContext(FriendContext);
   //state varible^^  we do this with info that will change like adding a post to post
   
   useEffect(() => {
   
     
-    getAllFriendByUserProfile();
+    getAllFriends();
   }, []);
 
   const user = JSON.parse(sessionStorage.getItem("userProfile"))
-console.log(Friends,"friend")
+
   return (
     
     <div className="container">

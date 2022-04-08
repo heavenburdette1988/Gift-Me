@@ -11,6 +11,7 @@ import { Form,  } from "react-bootstrap";
 const Gift = ({ giftProp }) => {
 
   const {deleteGift, getAllGifts, patchGift} = useContext(GiftContext)
+  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -69,7 +70,7 @@ const Gift = ({ giftProp }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Delete {giftProp.title}?</Modal.Title>
+          <Modal.Title>Are you sure you want to delete {giftProp.title}?</Modal.Title>
         </Modal.Header>
         <Modal.Body><Card.Img variant="top" src={giftProp.imageLocation} alt={giftProp.title} /></Modal.Body>
         <Modal.Footer>

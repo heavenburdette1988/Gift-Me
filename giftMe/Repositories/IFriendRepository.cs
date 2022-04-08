@@ -1,4 +1,5 @@
 ﻿using giftMe.Models;
+using System;
 using System.Collections.Generic;
 
 namespace giftMe.Repositories
@@ -9,6 +10,6 @@ namespace giftMe.Repositories
        
         List<Friend> GetAllFriends();
         Friend GetFriendById(int id);
-        void UpdateFriendShip(int id, bool friendship);
+        void UpdateFriendShip(int id, DateTime EndDateTime);
     }
 }

@@ -63,14 +63,18 @@ export const UserProvider =(props) =>{
  
 
   };
+  const getUserById = (id) => {
+    return fetch(`${apiUrl}/api/User/${id}`)
+        .then(res => res.json())
+
+}
 
 
-
-
+//https://localhost:44392/api/User/2
 
   return (
     <UserContext.Provider value={{ isLoggedIn, login, logout, register, getAllUserProfiles,
-                                     userProfiles, userProfile, setUserProfiles, getUser  }}>
+                                     userProfiles, userProfile, setUserProfiles, getUser,getUserById  }}>
        {props.children}
     </UserContext.Provider>
   );

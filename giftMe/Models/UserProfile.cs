@@ -28,6 +28,8 @@ namespace giftMe.Models
         [Required] 
         public DateTime DateOfBirth { get; set; }
 
+        public Friend Friend { get; set; }
+
 
 
     }

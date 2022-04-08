@@ -31,7 +31,8 @@ namespace giftMe.Repositories
                        up.Id as UserProfielId, up.DisplayName as UserDisplayName, up.About as UserAbout, up.Email as UserEmail, up.CreateDateTime AS UserProfileDateCreated, 
                        up.ImageLocation AS UserProfileImageUrl, up.FirstName as UserFirstName, up.LastName as UserLastName, up.DateOfBirth as UserDOB
                   FROM Friends f 
-                       LEFT JOIN UserProfile up ON up.Id = f.ProfileUserId;";
+                       LEFT JOIN UserProfile up ON up.Id = f.ProfileUserId
+                    ;";
 
                     var reader = cmd.ExecuteReader();
 
@@ -167,7 +168,7 @@ namespace giftMe.Repositories
 
 
 
-        public void UpdateFriendShip(int id, bool friendship)
+        public void UpdateFriendShip(int id, DateTime EndDateTime)
         {
             using (var conn = Connection)
             {
@@ -181,7 +182,7 @@ namespace giftMe.Repositories
                             WHERE Id = @Id";
 
 
-                    DbUtils.AddParameter(cmd, "@EndDateTime", friendship);
+                    DbUtils.AddParameter(cmd, "@EndDateTime", DateTime.Now);
                     DbUtils.AddParameter(cmd, "@Id", id);
 
                     cmd.ExecuteNonQuery();
