@@ -10,7 +10,7 @@ import { Form,  } from "react-bootstrap";
 
 const Gift = ({ giftProp }) => {
 
-  const {deleteGift, getAllGifts, patchTask} = useContext(GiftContext)
+  const {deleteGift, getAllGifts, patchGift} = useContext(GiftContext)
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,10 +26,10 @@ const Gift = ({ giftProp }) => {
   const handleReceived = () => {
 
   if (giftProp.itemReceived === true) {
-      patchTask(giftProp.id, false)
+    patchGift(giftProp.id, false)
            .then(getAllGifts) 
           } else {
-            patchTask(giftProp.id, true)
+            patchGift(giftProp.id, true)
             .then(getAllGifts) 
           }
           

@@ -3,6 +3,7 @@ import { GiftContext } from "../../providers/GiftProvider";
 import Gift from "./Gift";
 import {Button } from "reactstrap";
 import { useNavigate} from "react-router-dom";
+import { FriendList } from "../friends/FriendList";
 
 export const GiftList = () => {
     
@@ -19,24 +20,36 @@ getAllGifts()
 
  
 
-
+const user = JSON.parse(sessionStorage.getItem("userProfile"))
 
 
 return (
-    
+ <>
 <div className="gift">
       {console.log("GiftList: Render", Gifts)}
       <Button outline onClick={() => navigate(`/add/gifts/`)}>
     Create New
   </Button>
-  {' '}  
+  {' '}
+
+  <div className="UserDashboard"> 
+  
       {
-        Gifts.map(singleGiftInLoop => {
+        Gifts.filter(g => g.userId === user.id).map(singleGiftInLoop => {
         
           return <Gift key={singleGiftInLoop.id} giftProp={singleGiftInLoop} />
           
         })
-      }
+
+     }
+     </div>
+      <div className="friendList">
+    <FriendList/>
     </div>
+    </div>
+
+ 
+    </>   
+
   )
 }

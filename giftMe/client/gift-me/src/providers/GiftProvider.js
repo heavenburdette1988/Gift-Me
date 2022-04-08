@@ -60,7 +60,9 @@ const deleteGift = (giftId) => {
       .then(getAllGifts)
 }
 
-const patchTask = (giftId, itemReceived) => {
+
+//created patch to update the item received field in gifts when gift is received
+const patchGift = (giftId, itemReceived) => {
   // https://localhost:44392/api/Gift/23?ItemReceived=true
   return fetch(`${apiUrl}/api/Gift/${giftId}?ItemReceived=${itemReceived}`, {
       method: "PATCH",
@@ -74,8 +76,9 @@ const patchTask = (giftId, itemReceived) => {
 }
 
 
+
   return (
-    <GiftContext.Provider value={{ patchTask, getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift, updateGift, getGiftById }}>
+    <GiftContext.Provider value={{ patchGift, getAllGifts, Gifts, setGifts, addGift, getGifts,deleteGift, updateGift, getGiftById }}>
        {props.children}
     </GiftContext.Provider>
   );

@@ -59,6 +59,8 @@ namespace giftMe.Controllers
             return NoContent();
         }
 
+        //can only have 2 params - route param and property
+        //using the patch the item received prop
         [HttpPatch("{id}")]
         public IActionResult Patch( int id, bool ItemReceived)
         {

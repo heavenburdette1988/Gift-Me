@@ -19,6 +19,12 @@ namespace giftMe.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_userRepository.GetAll());
+        }
+
 
         // GET: api/<UserControllercs>
 

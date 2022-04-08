@@ -9,6 +9,10 @@ import { GiftList } from "./gifts/GiftList";
 import { GiftProvider } from "../providers/GiftProvider";
 import { GiftForm } from "./gifts/GiftForm";
 
+import { FriendProvider } from "../providers/FriendProvider";
+import { FriendList } from "./friends/FriendList";
+import { UserList } from "./users/UserList";
+
 
 
 
@@ -29,13 +33,16 @@ export default function ApplicationViews() {
      return(
        <UserProvider>
       <GiftProvider>
+      <FriendProvider>
             <Routes>
     
-            <Route path="/userDashboard" element={<GiftList />} /> 
+            <Route path="/userDashboard" element={<GiftList/>} /> 
             <Route path="/add/gifts" element={<GiftForm />} /> 
             <Route path="gifts/edit/:giftId/*" element={<GiftForm />} />   
+            <Route path="/users" element={<UserList/>} />   
                        
           </Routes>
+          </FriendProvider>
           </GiftProvider>
       </UserProvider>
   
