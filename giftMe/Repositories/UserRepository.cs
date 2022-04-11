@@ -19,10 +19,10 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       SELECT up.Id as UserId, up.DisplayName as displayName, up.FirstName as firstName, up.LastName as LastName, up.Email as Email, up.ImageLocation as imageLocation, up.About as About, up.CreateDateTime as createDate, up.DateOfBirth as DOB, f.id as friendId, f.EndDateTime as friendEndDateTime,f.subscriberUserId as subscriberUserId, f.ProfileUserId as  ProfileUserId
+                       SELECT up.Id as UserId, up.DisplayName as displayName, up.FirstName as firstName, up.LastName as LastName, up.Email as Email, up.ImageLocation as imageLocation, up.About as About, up.CreateDateTime as createDate, up.DateOfBirth as DOB, f.id as friendId, f.subscriberUserId as subscriberUserId, f.ProfileUserId as  ProfileUserId
                           FROM UserProfile up
                           Left join Friends f on f.ProfileUserID = up.Id
-                          where f.EndDateTime is null
+                        
                           ORDER BY CreateDateTime;";
 
                     var reader = cmd.ExecuteReader();

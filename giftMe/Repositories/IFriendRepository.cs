@@ -9,7 +9,9 @@ namespace giftMe.Repositories
         void AddFriend(Friend friend);
        
         List<Friend> GetAllFriends();
+        //List<Friend> GetAllFriends(int id);
+
         Friend GetFriendById(int id);
-        void UpdateFriendShip(int id, DateTime EndDateTime);
+        void DeleteFriend(int id);
     }
 }

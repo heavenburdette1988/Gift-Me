@@ -45,14 +45,14 @@ namespace giftMe.Controllers
         public void Put(int id, [FromBody] string value)
         {
         }
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id, DateTime EndDateTime)
-        {
 
-            //map body of requests to a gift object - gift.itemRecieved
-            _friendRepository.UpdateFriendShip(id, EndDateTime);
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _friendRepository.DeleteFriend(id);
             return NoContent();
         }
-
     }
 }
+

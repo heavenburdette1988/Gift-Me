@@ -8,7 +8,7 @@ export const FriendList = () => {
   
   useEffect(() => {
   
-    
+    debugger
     getAllFriends();
   }, []);
 
@@ -19,7 +19,7 @@ export const FriendList = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
-          {Friends.filter(f => f.subscriberUserId === user.id).map((singleFriendInLoop) =>  (
+          {Friends.filter(x => x.subscriberUserId === user.id).map((singleFriendInLoop) =>  (
        
             <Friend key={singleFriendInLoop.id} FriendProp={singleFriendInLoop} />
           ))}

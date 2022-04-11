@@ -33,28 +33,18 @@ export const FriendProvider =(props) =>{
 
 
 
+  const deleteFriend = (friendId) => {
 
-
-
-
-//created patch to update the item received field in gifts when gift is received
-const patchFriend = (friendId, EndDate) => {
-  // https://localhost:44392/api/Friend/11
-  return fetch(`${apiUrl}/api/Friend/${friendId}`, {
-      method: "PATCH",
-      headers: {
-          "Content-Type": "application/json"
-      },
-      
-      body: JSON.stringify({EndDate: EndDate})
-  })
-  
-}
+    return fetch(`${apiUrl}/api/Friend/${friendId}`, {
+        method: "DELETE"
+    })
+        .then(getAllFriends)
+  }
 
 
 
   return (
-    <FriendContext.Provider value={{patchFriend,getAllFriends, Friends, addFriend  }}>
+    <FriendContext.Provider value={{deleteFriend,getAllFriends, Friends, addFriend  }}>
        {props.children}
     </FriendContext.Provider>
   );

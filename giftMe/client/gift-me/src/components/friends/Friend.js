@@ -6,7 +6,7 @@ import { FriendContext } from "../../providers/FriendProvider";
  const Friend = ({ FriendProp }) => {
 
 
-    const { patchFriend, getAllFriendByUserProfile} = useContext(FriendContext)
+    const { deleteFriend, getAllFriendByUserProfile} = useContext(FriendContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,11 +15,9 @@ import { FriendContext } from "../../providers/FriendProvider";
 
 const handleUnfriend = () => {
        
-    if (FriendProp.endDateTime === null) {
-        patchFriend(FriendProp.id, FriendProp.endDateTime)
-             .then(getAllFriendByUserProfile) 
-                        
-            }
+         deleteFriend(FriendProp.id)
+             .then(getAllFriendByUserProfile)                        
+            
             
              }
 

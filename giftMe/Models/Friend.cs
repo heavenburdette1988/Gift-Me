@@ -9,7 +9,7 @@ namespace giftMe.Models
         public int Id { get; set; }
         [Required]
         public DateTime BeginDateTime { get; set; }
-        public DateTime? EndDateTime { get; set; }
+     
 
         public int SubscriberUserId { get; set; }
         public int ProfileUserId { get; set; }

@@ -27,12 +27,14 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-              SELECT f.Id AS FriendId, f.ProfileUserId as FriendUserProfileID, f.SubscriberUserId as UserFollowingFriendId, f.BeginDateTime as FriendFollowingDate, f.EndDateTime as FriendEndDate,
+              SELECT f.Id AS FriendId, f.ProfileUserId as FriendUserProfileID, f.SubscriberUserId as UserFollowingFriendId, f.BeginDateTime as FriendFollowingDate,
                        up.Id as UserProfielId, up.DisplayName as UserDisplayName, up.About as UserAbout, up.Email as UserEmail, up.CreateDateTime AS UserProfileDateCreated, 
                        up.ImageLocation AS UserProfileImageUrl, up.FirstName as UserFirstName, up.LastName as UserLastName, up.DateOfBirth as UserDOB
                   FROM Friends f 
-                       LEFT JOIN UserProfile up ON up.Id = f.ProfileUserId
-                    ;";
+                        JOIN UserProfile up ON up.Id = f.ProfileUserId";
+                       //where f.SubscriberUserId = @id;"; 
+
+                    //DbUtils.AddParameter(cmd, "@Id", id);
 
                     var reader = cmd.ExecuteReader();
 
@@ -54,7 +56,7 @@ namespace giftMe.Repositories
                                 ProfileUserId = DbUtils.GetInt(reader, "FriendUserProfileID"),
                                 SubscriberUserId = DbUtils.GetInt(reader, "UserFollowingFriendId"),
                                 BeginDateTime = DbUtils.GetDateTime(reader, "FriendFollowingDate"),
-                                EndDateTime = DbUtils.GetNullableDateTime(reader, "FriendEndDate"),
+                                
                             };
                             friends.Add(existingFriend);
                         }
@@ -121,7 +123,7 @@ namespace giftMe.Repositories
                             ProfileUserId = DbUtils.GetInt(reader, "FriendUserProfileID"),
                             SubscriberUserId = DbUtils.GetInt(reader, "UserFollowingFriendId"),
                             BeginDateTime = DbUtils.GetDateTime(reader, "FriendFollowingDate"),
-                            EndDateTime = DbUtils.GetNullableDateTime(reader, "FriendEndDate"),
+                       
 
                             UserProfile = new UserProfile()
                             {
@@ -151,14 +153,14 @@ namespace giftMe.Repositories
                 {
                     cmd.CommandText = @"
                     
-                       INSERT INTO Friends (ProfileUserId, SubscriberUserId, BeginDateTime, EndDateTime)
+                       INSERT INTO Friends (ProfileUserId, SubscriberUserId, BeginDateTime)
                     OUTPUT INSERTED.ID
-                    VALUES (@ProfileUserId, @SubscriberUserId,@BeginDateTime, @EndDateTime)";
+                    VALUES (@ProfileUserId, @SubscriberUserId,@BeginDateTime)";
 
                     DbUtils.AddParameter(cmd, "@ProfileUserId", friend.ProfileUserId);
                     DbUtils.AddParameter(cmd, "@SubscriberUserId", friend.SubscriberUserId);
                     DbUtils.AddParameter(cmd, "@BeginDateTime", DateTime.Now);
-                    DbUtils.AddParameter(cmd, "@EndDateTime", null);
+          
 
 
                     friend.Id = (int)cmd.ExecuteScalar();
@@ -167,89 +169,21 @@ namespace giftMe.Repositories
         }
 
 
-
-        public void UpdateFriendShip(int id, DateTime EndDateTime)
+        public void DeleteFriend(int id)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"
-                    UPDATE Friends
-                       SET
-                           EndDateTime = @EndDateTime
-                            WHERE Id = @Id";
-
-
-                    DbUtils.AddParameter(cmd, "@EndDateTime", DateTime.Now);
+                    cmd.CommandText = "DELETE FROM Friends WHERE Id = @Id";
                     DbUtils.AddParameter(cmd, "@Id", id);
-
                     cmd.ExecuteNonQuery();
                 }
             }
+
+
         }
-
-
-
-        //public List<Post> Search(string criterion, bool sortDescending)
-        //{
-        //    using (var conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (var cmd = conn.CreateCommand())
-        //        {
-        //            var sql =
-        //                @"SELECT p.Id AS PostId, p.Title, p.Caption, p.DateCreated AS PostDateCreated, 
-        //                p.ImageUrl AS PostImageUrl, p.UserProfileId,
-        //                up.Name, up.Bio, up.Email, up.DateCreated AS UserProfileDateCreated, 
-        //                up.ImageUrl AS UserProfileImageUrl
-        //            FROM Post p 
-        //                LEFT JOIN UserProfile up ON p.UserProfileId = up.id
-        //            WHERE p.Title LIKE @Criterion OR p.Caption LIKE @Criterion";
-
-        //            if (sortDescending)
-        //            {
-        //                sql += " ORDER BY p.DateCreated DESC";
-        //            }
-        //            else
-        //            {
-        //                sql += " ORDER BY p.DateCreated";
-        //            }
-
-        //            cmd.CommandText = sql;
-        //            DbUtils.AddParameter(cmd, "@Criterion", $"%{criterion}%");
-        //            //wild card $"%{}%
-        //            var reader = cmd.ExecuteReader();
-
-        //            var posts = new List<Post>();
-        //            while (reader.Read())
-        //            {
-        //                posts.Add(new Post()
-        //                {
-        //                    Id = DbUtils.GetInt(reader, "PostId"),
-        //                    Title = DbUtils.GetString(reader, "Title"),
-        //                    Caption = DbUtils.GetString(reader, "Caption"),
-        //                    DateCreated = DbUtils.GetDateTime(reader, "PostDateCreated"),
-        //                    ImageUrl = DbUtils.GetString(reader, "PostImageUrl"),
-        //                    UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-        //                    UserProfile = new UserProfile()
-        //                    {
-        //                        Id = DbUtils.GetInt(reader, "UserProfileId"),
-        //                        Name = DbUtils.GetString(reader, "Name"),
-        //                        Email = DbUtils.GetString(reader, "Email"),
-        //                        DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
-        //                        ImageUrl = DbUtils.GetString(reader, "UserProfileImageUrl"),
-        //                    },
-        //                });
-        //            }
-
-        //            reader.Close();
-
-        //            return posts;
-        //        }
-        //    }
-        //}
-    }
+        }
 }
 

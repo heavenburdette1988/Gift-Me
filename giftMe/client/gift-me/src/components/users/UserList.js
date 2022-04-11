@@ -11,7 +11,7 @@ export const UserList = () => {
   const { Friends, getAllFriends } = useContext(FriendContext);
 
   const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
-  const myfriendList = Friends.filter(x => x.subscriberUserId === currentUser.id && x.endDateTime !== null)
+  const myfriendList = Friends.filter(x => x.subscriberUserId === currentUser.id)
 
   useEffect(() => {
     getAllUserProfiles().then(getAllFriends)
