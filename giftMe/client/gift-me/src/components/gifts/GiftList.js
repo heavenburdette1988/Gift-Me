@@ -4,6 +4,7 @@ import Gift from "./Gift";
 import {Button } from "reactstrap";
 import { useNavigate} from "react-router-dom";
 import { FriendList } from "../friends/FriendList";
+import { EventList } from "../events/EventList";
 
 export const GiftList = () => {
     
@@ -45,6 +46,9 @@ return (
      </div>
       <div className="friendList">
     <FriendList/>
+    </div>
+    <div>
+      <EventList/>
     </div>
     </div>
 

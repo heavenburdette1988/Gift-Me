@@ -25,7 +25,13 @@ namespace giftMe.Controllers
             return Ok(_userRepository.GetAll());
         }
 
+        [HttpGet("GetByDOB")]
+        public IActionResult GetAllByDOB()
+        {
+            return Ok(_userRepository.GetAllByDOB());
+        }
 
+       
         // GET: api/<UserControllercs>
 
         [HttpGet("GetByEmail")]

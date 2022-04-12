@@ -41,14 +41,7 @@ namespace giftMe.Repositories
                             DateOfBirth = DbUtils.GetDateTime(reader, "DOB"),
                             ImageLocation = DbUtils.GetString(reader, "imageLocation"),
                             About = DbUtils.GetString(reader, "About"),
-                            //        Friend = new Friend()
-                            //        {
-                            //            Id = DbUtils.GetInt(reader, "friendId"),
-                            //            SubscriberUserId = DbUtils.GetInt(reader, "subscriberUserId"),
-                            //            ProfileUserId = DbUtils.GetInt(reader, "ProfileUserId"),
-                            //            EndDateTime = DbUtils.GetNullableDateTime(reader, "friendEndDateTime"),
-
-                            //        }
+                           
                         });
                     }
 
@@ -162,6 +155,76 @@ namespace giftMe.Repositories
                     reader.Close();
 
                     return user;
+                }
+            }
+
+        }
+
+
+        public void AddUserProfile(UserProfile userProfile)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO UserProfile(DisplayName, FirstName, LastName, Email, ImageLocation, About, CreateDateTime, DateOfBirth)
+                        OUTPUT INSERTED.ID
+                        VALUES (@DisplayName, @FirstName, @LastName, @Email, @ImageLocation, @About, @CreateDateTime , @DateOfBirth) ";
+
+                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
+                    DbUtils.AddParameter(cmd, "FirstName", false);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@About", userProfile.About);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", DateTime.Now);
+                    DbUtils.AddParameter(cmd, "@DateOfBirth", userProfile.DateOfBirth);
+
+                    userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public List<UserProfile> GetAllByDOB()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                           SELECT Id,
+                  dateOfBirth, DisplayName, FirstName, LastName, Email,CreateDateTime,DateOfBirth, ImageLocation,About
+                 ,FLOOR(DATEDIFF(dd,dateOfBirth,GETDATE()) / 365.25) AS AGE_NOW
+                 ,FLOOR(DATEDIFF(dd,dateOfBirth,GETDATE()+7) / 365.25) AS AGE_ONE_WEEK_FROM_NOW
+                FROM 
+                  UserProfile;";
+
+                    var reader = cmd.ExecuteReader();
+
+                    var users = new List<UserProfile>();
+                    while (reader.Read())
+                    {
+                        users.Add(new UserProfile()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                            FirstName = DbUtils.GetString(reader, "FirstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                            DateOfBirth = DbUtils.GetDateTime(reader, "DateOfBirth"),
+                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                            About = DbUtils.GetString(reader, "About"),
+
+                        });
+                    }
+
+                    reader.Close();
+
+                    return users;
                 }
             }
         }
