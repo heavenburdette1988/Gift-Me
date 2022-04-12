@@ -208,6 +208,7 @@ namespace giftMe.Repositories
                             DateOfBirth = DbUtils.GetDateTime(reader, "DateOfBirth"),
                             ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             About = DbUtils.GetString(reader, "About"),
+                         
 
                         });
                     }

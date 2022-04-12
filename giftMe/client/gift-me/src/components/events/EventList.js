@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 
 import Event from "./Events";
+import { FriendContext } from "../../providers/FriendProvider";
 
 
 
@@ -13,13 +14,16 @@ const EventList = () => {
     
     const { getAllUserProfilesByDOB, userProfiles } = useContext(UserContext);
     
+    const { Friends, getAllFriends } = useContext(FriendContext);
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
 
+    const myfriendList = Friends.filter(x => x.subscriberUserId === currentUser.id)
 
-
+  
     useEffect(() => {
       
-        getAllUserProfilesByDOB()
+        getAllUserProfilesByDOB().then(getAllFriends)
         
 
             }, [])
@@ -34,7 +38,7 @@ const EventList = () => {
 <>
 <div><h2>Upcoming Birthdays</h2>
         {
-            userProfiles.map(u => {
+            userProfiles.filter(x => myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map(u => {
     
                
                    return (<Event key={u.id} eventProp={u} />)
