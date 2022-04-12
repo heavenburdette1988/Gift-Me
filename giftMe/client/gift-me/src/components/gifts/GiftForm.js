@@ -22,7 +22,10 @@ export const GiftForm = () => {
     const navigate = useNavigate();
     const {giftId} = useParams();
 console.log(giftId, "giftId")
-    useEffect(()=> {
+    
+
+
+useEffect(()=> {
         if(giftId){
             getGiftById(giftId)
             .then(gift => {

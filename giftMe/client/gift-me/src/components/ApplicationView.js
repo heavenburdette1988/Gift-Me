@@ -13,6 +13,7 @@ import { FriendProvider } from "../providers/FriendProvider";
 import { FriendList } from "./friends/FriendList";
 import { UserList } from "./users/UserList";
 import UserProfile from "./users/UserProfile";
+import UserGiftList from "./users/UserGiftList";
 
 
 
@@ -41,7 +42,7 @@ export default function ApplicationViews() {
             <Route path="/add/gifts" element={<GiftForm />} /> 
             <Route path="gifts/edit/:giftId/*" element={<GiftForm />} />   
             <Route path="/users" element={<UserList/>} />   
-            <Route path="/user/:userId" element={<UserProfile/>} />   
+            <Route path="/user/:userId" element={<><UserProfile/><UserGiftList/></>} />   
                        
           </Routes>
           </FriendProvider>

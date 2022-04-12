@@ -1,9 +1,19 @@
-import React from "react";
+
+
+import React, {  useContext } from 'react';
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { UserContext } from "../providers/UserProviders";
 
 const Header = () => {
+  const { isLoggedIn, logout } = useContext(UserContext);
+  
   return (
+
+
     <nav className="navbar navbar-expand navbar-dark bg-info">
+      {isLoggedIn &&
+      <>
       <Link to="/userDashboard" className="navbar-brand">
         Gift Me
       </Link>
@@ -19,9 +29,18 @@ const Header = () => {
             Explore
           </Link>
         </li>
-        
+        <li className="nav-item">
+          <Link to={logout} onClick={logout} className="nav-link">
+            Logout
+          </Link>
+        </li>
       </ul>
+      
+      </>
+}
+
     </nav>
+
   );
 };
 
