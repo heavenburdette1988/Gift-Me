@@ -29,13 +29,14 @@ const UserGiftList = () => {
 
    
 
-      
+      //! cannot get userID param to work
         
 
     return (
 <>
+<h2>Gifts List</h2>
         {
-            Gifts.filter(g => g.userId !== userId).map(g => {
+            Gifts.filter(g => g.userId === +userId).map(g => {
     
                
                    return (<Gift key={g.id} giftProp={g} setGift={setGift} />)

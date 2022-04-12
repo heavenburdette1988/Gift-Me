@@ -19,6 +19,7 @@ export const FriendList = () => {
     <div className="container">
       <div className="row justify-content-center">
         <div className="cards-column">
+          <h2>Friends</h2>
           {Friends.filter(x => x.subscriberUserId === user.id).map((singleFriendInLoop) =>  (
        
             <Friend key={singleFriendInLoop.id} FriendProp={singleFriendInLoop} />

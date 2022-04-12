@@ -4,7 +4,7 @@ import Gift from "./Gift";
 import {Button } from "reactstrap";
 import { useNavigate} from "react-router-dom";
 import { FriendList } from "../friends/FriendList";
-import { EventList } from "../events/EventList";
+import  EventList  from "../events/EventList";
 
 export const GiftList = () => {
     
@@ -12,7 +12,7 @@ const { Gifts, getAllGifts } = useContext(GiftContext);
 
 const navigate = useNavigate();
 
- 
+
 
 
 useEffect(() => {
@@ -34,7 +34,7 @@ return (
   {' '}
 
   <div className="UserDashboard"> 
-  
+  <h2>Gift List</h2>
       {
         Gifts.filter(g => g.userId === user.id).map(singleGiftInLoop => {
         
@@ -47,7 +47,7 @@ return (
       <div className="friendList">
     <FriendList/>
     </div>
-    <div>
+    <div className="EventList">
       <EventList/>
     </div>
     </div>

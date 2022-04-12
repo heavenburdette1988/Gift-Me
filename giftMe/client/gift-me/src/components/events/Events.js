@@ -7,11 +7,11 @@ import { Button, Card,InputGroup,Modal } from 'react-bootstrap';
 import { GiftContext } from "../../providers/GiftProvider";
 
 import { Form,  } from "react-bootstrap";
-import { UserContext, UserProvider } from "../../providers/UserProviders";
+import { UserContext } from "../../providers/UserProviders";
 
 const Event = ({ eventProp }) => {
 
-  const {userProfiles, getAllUserProfilesByDOB} = useContext(UserContext)
+  const { getAllUserProfilesByDOB} = useContext(UserContext)
   
   
 
@@ -25,12 +25,8 @@ const Event = ({ eventProp }) => {
 <Card style={{ width: '18rem' }}>
 <Card.Img variant="top" src={eventProp.imageLocation} alt={eventProp.displayName} />
 <Card.Body>
-  <Card.Title>Birthday- {eventProp.DateOfBirth}: </Card.Title>
-  {/* <Card.Title><a href={giftProp.url} target="blank">{giftProp.title} </a></Card.Title>
-   <Card.Text>
- <p> Notes: {giftProp.notes}</p>
- <p> Quantity Needed: {giftProp.quantity}</p> */}
-  {/* </Card.Text> */}
+  <Card.Title>{eventProp.displayName}'s' Birthday {new Date(eventProp.dateOfBirth).toLocaleDateString('en-us')} </Card.Title>
+  
   </Card.Body>
       </Card>
 

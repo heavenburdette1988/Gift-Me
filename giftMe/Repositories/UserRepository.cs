@@ -118,7 +118,19 @@ namespace giftMe.Repositories
             }
         }
 
-
+        public void DeleteUser(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM UserProfile WHERE Id = @Id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
         public UserProfile GetByEmail(string email)
         {
@@ -161,31 +173,7 @@ namespace giftMe.Repositories
         }
 
 
-        public void AddUserProfile(UserProfile userProfile)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                        INSERT INTO UserProfile(DisplayName, FirstName, LastName, Email, ImageLocation, About, CreateDateTime, DateOfBirth)
-                        OUTPUT INSERTED.ID
-                        VALUES (@DisplayName, @FirstName, @LastName, @Email, @ImageLocation, @About, @CreateDateTime , @DateOfBirth) ";
-
-                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
-                    DbUtils.AddParameter(cmd, "FirstName", false);
-                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
-                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@About", userProfile.About);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", DateTime.Now);
-                    DbUtils.AddParameter(cmd, "@DateOfBirth", userProfile.DateOfBirth);
-
-                    userProfile.Id = (int)cmd.ExecuteScalar();
-                }
-            }
-        }
+       
 
         public List<UserProfile> GetAllByDOB()
         {
@@ -195,12 +183,14 @@ namespace giftMe.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                           SELECT Id,
-                  dateOfBirth, DisplayName, FirstName, LastName, Email,CreateDateTime,DateOfBirth, ImageLocation,About
-                 ,FLOOR(DATEDIFF(dd,dateOfBirth,GETDATE()) / 365.25) AS AGE_NOW
-                 ,FLOOR(DATEDIFF(dd,dateOfBirth,GETDATE()+7) / 365.25) AS AGE_ONE_WEEK_FROM_NOW
-                FROM 
-                  UserProfile;";
+                   SELECT id, dateofbirth,DisplayName, FirstName, LastName, Email,CreateDateTime,DateOfBirth, ImageLocation,About
+                   ,FLOOR(DATEDIFF(dd, dateofbirth,GETDATE()) / 365.25) AS AGE_NOW
+                   ,FLOOR(DATEDIFF(dd,dateofbirth,GETDATE()+30) / 365.25) AS AGE_30_Days_FROM_NOW
+                   FROM userProfile
+                         
+                    WHERE 1 = (FLOOR(DATEDIFF(dd,dateofbirth,GETDATE()+30) / 365.25))
+                        -
+                    (FLOOR(DATEDIFF(dd,dateofbirth,GETDATE()) / 365.25));";
 
                     var reader = cmd.ExecuteReader();
 

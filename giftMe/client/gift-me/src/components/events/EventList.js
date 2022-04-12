@@ -12,20 +12,15 @@ import Event from "./Events";
 const EventList = () => {
     
     const { getAllUserProfilesByDOB, userProfiles } = useContext(UserContext);
-    const { getUserById } = useContext(UserContext);
+    
 
-    const [user, setUser] = useState({})
-
-   
-
-    const {userId} = useParams();
 
 
 
     useEffect(() => {
-        console.log("useEffect", userId)
-        getAllUserProfilesByDOB().then(() => getUserById(userId)
-        )
+      
+        getAllUserProfilesByDOB()
+        
 
             }, [])
    
@@ -37,16 +32,18 @@ const EventList = () => {
 
     return (
 <>
+<div><h2>Upcoming Birthdays</h2>
         {
-            userProfiles.filter(up => up.userId !== userId).map(u => {
+            userProfiles.map(u => {
     
                
                    return (<Event key={u.id} eventProp={u} />)
            }
            )
 }
-    
+</div>
       </>  
+     
         
 
 

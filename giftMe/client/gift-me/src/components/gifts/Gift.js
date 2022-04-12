@@ -1,21 +1,31 @@
-import React, {useContext, useState,  } from "react";
+import React, {useContext, useState, useEffect } from "react";
 // import { Card, CardImg, CardBody } from "reactstrap";
 
-import {   useNavigate,   } from "react-router-dom";
+import {   useNavigate,useParams   } from "react-router-dom";
 
 import { Button, Card,InputGroup,Modal } from 'react-bootstrap';
 import { GiftContext } from "../../providers/GiftProvider";
 
 import { Form,  } from "react-bootstrap";
+import { UserContext } from "../../providers/UserProviders";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const Gift = ({ giftProp }) => {
 
   const {deleteGift, getAllGifts, patchGift} = useContext(GiftContext)
+  const {getUserById} = useContext(UserContext)
   
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const navigate = useNavigate();
+
+  const {userId} = useParams();
+ 
+
+console.log(userId, "userid")
+
 
   const handleGiftDelete = () => {
       console.log("deleteGiftId",giftProp.id)
@@ -36,7 +46,13 @@ const Gift = ({ giftProp }) => {
           
            }
   
+  useEffect(() => {
+        console.log("useEffect", userId)
+        if(userId){
+         getUserById(userId)
+   } }, [])
 
+//added conditional on buttons to keep logged in user from being able to change friends gifts
   return (
   
 <Card style={{ width: '18rem' }}>
@@ -49,15 +65,29 @@ const Gift = ({ giftProp }) => {
  <p> Quantity Needed: {giftProp.quantity}</p>
   </Card.Text>
 
+  {!userId ? 
   <Button variant="primary" onClick={() => navigate(`/gifts/edit/${giftProp.id}`)}>Edit</Button>
+  : null}
+
+  {!userId ? 
   <Button
     color="danger"
     outline
-    onClick={handleShow}
-  >
-    Delete
+    onClick={event => {
+      event.preventDefault()
+      handleShow()}}>
+{!userId  ? <>Delete</> : <a type="hidden"></a>}
+
+   
   </Button>
+: null}
+
+
+
 </Card.Body>
+
+  
+{!userId ? 
 <InputGroup className="mb-3">
 
             <Form.Check
@@ -65,7 +95,7 @@ const Gift = ({ giftProp }) => {
     id="itemReceived"
     onChange={handleReceived} required  className="form-control" />{giftProp.itemReceived === false ? <>Mark item when received</> : <>Mark item as not received</>}
  </InputGroup>  
-  
+  : null}
 
 
       <Modal show={show} onHide={handleClose}>
