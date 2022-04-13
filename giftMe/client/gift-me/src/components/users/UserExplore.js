@@ -2,7 +2,7 @@ import { useNavigate} from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 import React, {useContext, useState,  useEffect  } from "react";
 import { FriendContext } from "../../providers/FriendProvider";
-
+import './User.css'
   const UserExplore = ({ UserProp }) => {
 
     const user = JSON.parse(sessionStorage.getItem("userProfile"))
@@ -23,13 +23,7 @@ import { FriendContext } from "../../providers/FriendProvider";
     useEffect(() => {
 
       getAllFriends()
-    //   if(Friends.Filter(f => f.subscriberUserId !== user.id && f.endDateTime === null)){
-    //     setUserProfile(userProfile)
-     
-    //   }
-    // })
-  
-    }, []);
+      }, []);
 
     const handleAddFriend = (event) => {
        
@@ -38,22 +32,22 @@ import { FriendContext } from "../../providers/FriendProvider";
            }
           
           
- 
-  return (
 
+  return (
+<div className="ExploreCard">
     <Card style={{ width: '18rem' }}>
    
   <Card.Img variant="top" src={UserProp.imageLocation} />
   <Card.Body>
     <Card.Title>{UserProp.displayName}</Card.Title>
     <Card.Text>
-     
+    {UserProp.firstName}  {UserProp.lastName}
     </Card.Text>
     <Button variant="primary" onClick={handleAddFriend}>Add Friend</Button>
 
   </Card.Body>
 </Card>
- 
+</div>
       );
   };
    

@@ -4,7 +4,7 @@ import React, { useState, useContext, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { GiftContext } from "../../providers/GiftProvider";
 import Gift from "../gifts/Gift";
-
+import './User.css'
 
 const UserGiftList = () => {
     
@@ -27,14 +27,14 @@ const UserGiftList = () => {
             }, [])
    
 
-   
-
-      //! cannot get userID param to work
+    
         
 
     return (
 <>
-<h2>Gifts List</h2>
+<div className="UserGiftColumn">
+<h2>Gifts </h2>
+<div className="userGiftList">
         {
             Gifts.filter(g => g.userId === +userId).map(g => {
     
@@ -43,7 +43,8 @@ const UserGiftList = () => {
            }
            )
 }
- 
+</div>
+</div>
     
       </>  
         

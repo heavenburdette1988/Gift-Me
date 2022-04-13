@@ -3,7 +3,8 @@ import { UserContext } from "../../providers/UserProviders";
 import React, { useState, useContext, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { GiftList } from "../gifts/GiftList";
-
+import { UserFriend } from "./UserFriend";
+import './User.css'
 
 const UserProfile = () => {
  
@@ -13,7 +14,7 @@ const UserProfile = () => {
    
 
 	const {userId} = useParams();
-;
+
   
     useEffect(() => {
         console.log("useEffect", userId)
@@ -27,7 +28,7 @@ const UserProfile = () => {
 
 
     return (
-
+<>
         <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={user.imageLocation} />
         <Card.Body>
@@ -38,8 +39,8 @@ const UserProfile = () => {
           </Card.Text>
           </Card.Body>
       </Card>
-   
-
+    <UserFriend/>
+    </>
   
   
     );

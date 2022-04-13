@@ -5,6 +5,7 @@ import {Button } from "reactstrap";
 import { useNavigate} from "react-router-dom";
 import { FriendList } from "../friends/FriendList";
 import  EventList  from "../events/EventList";
+import './Gift.css'
 
 export const GiftList = () => {
     
@@ -26,14 +27,13 @@ const user = JSON.parse(sessionStorage.getItem("userProfile"))
 
 return (
  <>
-<div className="gift">
-      {console.log("GiftList: Render", Gifts)}
+  {console.log("GiftList: Render", Gifts)}
       <Button outline onClick={() => navigate(`/add/gifts/`)}>
     Create New
   </Button>
   {' '}
-
-  <div className="UserDashboard"> 
+  <div className="giftList">
+  <div className="giftListColumn">
   <h2>Gift List</h2>
       {
         Gifts.filter(g => g.userId === user.id).map(singleGiftInLoop => {
@@ -44,13 +44,17 @@ return (
 
      }
      </div>
-      <div className="friendList">
+     
+      <div className="friendListColumn">
     <FriendList/>
     </div>
-    <div className="EventList">
+
+    <div className="EventListColumn">
       <EventList/>
     </div>
+
     </div>
+    
 
    
     </>   

@@ -58,6 +58,7 @@ export default function Register() {
           <Input id="dateOfBirth" type="date" onChange={e => setDateOfBirth(e.target.value)} />
         </FormGroup>
         <Label htmlFor="About">About</Label>
+        <p>Favorite colors, items you collect, hobbies, favorite books and music genre are some examples to what goes here. </p>
         <FormGroup>
                    <textarea id="about" rows="5
           " Cols="100" onChange={e => setAbout(e.target.value)} />

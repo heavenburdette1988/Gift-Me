@@ -10,6 +10,6 @@ namespace giftMe.Repositories
         List<Gift> GetAllGifts();
         Gift GetGiftById(int id);
         void UpdateGift(Gift gift);
-         void UpdateItemReceived(int id, bool gift);
+        void UpdateItemReceived(int id, bool gift);
     }
 }

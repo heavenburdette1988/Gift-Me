@@ -1,0 +1,40 @@
+/* /.cards-FriendColumn{
+    display: flex;
+}
+.UserGiftColumn{
+      float: right;
+  position: relative; 
+  right: 700px;
+  top: -1050px;
+
+} */
+
+.cards-ExploreColumn{
+    display: flex;
+    padding: 50px;
+    margin: 5px;
+    flex-wrap: wrap;
+}
+.UserGiftColumn{
+    padding: 50px;
+    height: 250px;
+    margin: 5px;
+    text-align: center;
+} 
+
+.cards-FriendColumn{
+    padding: 50px;
+    height: 250px;
+    margin: 15px;
+    text-align: center;
+ 
+    
+}
+
+.UserProfileMainContainer{
+    display: grid;
+    grid-template-columns: 300px 350px 200px;
+    text-align: center;
+    width: 50vw;
+    height: 50vh;
+}

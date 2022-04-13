@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap";
 import { UserContext } from "../../providers/UserProviders";
 import React, { useState, useContext, useEffect } from "react"
 import { useParams } from "react-router-dom";
-
+import './Event.css'
 
 
 import Event from "./Events";
@@ -25,7 +25,6 @@ const EventList = () => {
       
         getAllUserProfilesByDOB().then(getAllFriends)
         
-
             }, [])
    
 
@@ -36,7 +35,9 @@ const EventList = () => {
 
     return (
 <>
-<div><h2>Upcoming Birthdays</h2>
+
+    <h2 className="EventTitle">Upcoming Birthdays</h2>
+
         {
             userProfiles.filter(x => myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map(u => {
     
@@ -45,7 +46,7 @@ const EventList = () => {
            }
            )
 }
-</div>
+
       </>  
      
         
@@ -55,5 +56,6 @@ const EventList = () => {
   
     );
   };
+
 
   export default EventList;

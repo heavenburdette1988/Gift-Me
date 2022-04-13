@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { FriendContext } from "../../providers/FriendProvider";
 import { UserContext } from "../../providers/UserProviders";
 import Friend from "../friends/Friend";
 import UserExplore from "./UserExplore";
 import User from "./UserExplore";
+import './User.css'
 
 export const UserList = () => {
   const { getAllUserProfiles, userProfiles } = useContext(UserContext);
@@ -11,8 +12,10 @@ export const UserList = () => {
   const { Friends, getAllFriends } = useContext(FriendContext);
 
   const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
+
   const myfriendList = Friends.filter(x => x.subscriberUserId === currentUser.id)
 
+ 
 
   useEffect(() => {
     getAllUserProfiles().then(getAllFriends)
@@ -23,10 +26,11 @@ export const UserList = () => {
 
   return (
 
-    <div className="container">
+    <div className="UserListContainer">
       <div className="row justify-content-center">
-        <div className="cards-column">
-          <h1>Explore Friends</h1>
+      <h1>Explore</h1>
+        <div className="cards-ExploreColumn">
+       
           {userProfiles.filter(x => !myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map((singleUserInLoop) => (
 
             <UserExplore key={singleUserInLoop.id} UserProp={singleUserInLoop} />

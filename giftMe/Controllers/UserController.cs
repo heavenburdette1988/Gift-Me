@@ -71,14 +71,23 @@ namespace giftMe.Controllers
 
         // PUT api/<UserControllercs>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, UserProfile userProfile)
         {
+            if (id != userProfile.Id)
+            {
+                return BadRequest();
+            }
+
+            _userRepository.UpdateUser(userProfile);
+            return NoContent();
         }
 
         // DELETE api/<UserControllercs>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            _userRepository.DeleteUser(id);
+            return NoContent();
         }
     }
 }

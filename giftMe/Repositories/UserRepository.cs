@@ -172,8 +172,42 @@ namespace giftMe.Repositories
 
         }
 
+        public void UpdateUser(UserProfile userProfile)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                       UPDATE UserProfile
+                           SET DisplayName = @DisplayName,
+                               FirstName = @FirstName,
+                               LastName = @LastName,
+                               ImageLocation = @ImageLocation,
+                               Email = @Email,
+                               CreateDateTime = @CreateDateTime,
+                               About = @About,
+                               DateOfBirth = @DateOfBirth
 
-       
+                         WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName",userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@About", userProfile.About);
+                    DbUtils.AddParameter(cmd, "@DateOfBirth", userProfile.DateOfBirth);
+                    DbUtils.AddParameter(cmd, "@Id", userProfile.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
 
         public List<UserProfile> GetAllByDOB()
         {

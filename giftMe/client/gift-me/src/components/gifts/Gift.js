@@ -9,6 +9,8 @@ import { GiftContext } from "../../providers/GiftProvider";
 import { Form,  } from "react-bootstrap";
 import { UserContext } from "../../providers/UserProviders";
 import { isDisabled } from "@testing-library/user-event/dist/utils";
+import './Gift.css'
+
 
 const Gift = ({ giftProp }) => {
 
@@ -24,11 +26,10 @@ const Gift = ({ giftProp }) => {
   const {userId} = useParams();
  
 
-console.log(userId, "userid")
 
 
   const handleGiftDelete = () => {
-      console.log("deleteGiftId",giftProp.id)
+  
    
     deleteGift(giftProp.id) 
         navigate(handleClose)            
@@ -47,15 +48,14 @@ console.log(userId, "userid")
            }
   
   useEffect(() => {
-        console.log("useEffect", userId)
-        if(userId){
+         if(userId){
          getUserById(userId)
    } }, [])
 
 //added conditional on buttons to keep logged in user from being able to change friends gifts
   return (
   
-<Card style={{ width: '18rem' }}>
+<Card style={{ width: '18rem' }} className="giftCard">
 <Card.Img variant="top" src={giftProp.imageLocation} alt={giftProp.title} />
 <Card.Body>
   <Card.Title>Purchase for {giftProp.userProfile.displayName}: </Card.Title>

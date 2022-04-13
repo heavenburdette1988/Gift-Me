@@ -1,41 +1,76 @@
-import React, {useContext, useState  } from "react";
+import React, {useContext, useState, useEffect  } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { FriendContext } from "../../providers/FriendProvider";
+import { UserContext } from "../../providers/UserProviders";
+import './Friend.css'
+import '../users/User.css'
 
  const Friend = ({ FriendProp }) => {
 
 
-    const { deleteFriend, getAllFriendByUserProfile} = useContext(FriendContext)
+    const { Friends,addFriend,deleteFriend, getAllFriendByUserProfile} = useContext(FriendContext)
+    const {getUserById} = useContext(UserContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
    
+    const {userId} = useParams();
+    
+    const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
 
+ 
+
+    const [Friend, setFriend] = useState({
+      profileUserId: FriendProp.profileUserId,
+      subscriberUserId: +currentUser.id,
+     
+        })
+    const navigate = useNavigate();
+
+    useEffect(() => {
+   
+      if(userId){
+      
+       getUserById(userId)
+ } }, [])
 
 const handleUnfriend = () => {
-       
-         deleteFriend(FriendProp.id)
-             .then(getAllFriendByUserProfile)                        
-            
-            
+                deleteFriend(FriendProp.id)
+             .then(getAllFriendByUserProfile)
+                        
              }
 
-  return (
+             const handleAddFriend = (event) => {
+                          addFriend(Friend)
+            .then(navigate("/userDashboard"));
+              
+     }
 
+  return (
+<div className="FriendCard">
     <Card style={{ width: '18rem' }}>
-    <Link to={`/user/${FriendProp.userProfiles[0].id}`}>
+     
+    <Link  to={`/user/${FriendProp.userProfiles[0].id}`}>
   <Card.Img variant="top"  src={FriendProp.userProfiles[0].imageLocation} />
-  </Link>
+  </Link> 
   <Card.Body>
+  
+  {currentUser.id === FriendProp.subscriberUserId ?
   <Link to={`/user/${FriendProp.userProfiles[0].id}`}>
     <Card.Title>{FriendProp.userProfiles[0].displayName}</Card.Title>
-    </Link>
+    </Link>: null}
     <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
+    {FriendProp.userProfiles[0].firstName}  {FriendProp.userProfiles[0].lastName}
     </Card.Text>
+   
+    {!userId ?
     <Button variant="primary" onClick={handleShow} >Unfriend</Button>
+ : null}
+
+{currentUser.id !== FriendProp.subscriberUserId ?
+<Button variant="primary" onClick={handleAddFriend}>Add Friend</Button>
+ : null}
   </Card.Body>
 
   <Modal show={show} onHide={handleClose}>
@@ -54,9 +89,11 @@ const handleUnfriend = () => {
       </Modal>
       
 </Card>
+</div>
 
 
   );
 };
+ 
 
 export default Friend;

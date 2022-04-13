@@ -11,5 +11,8 @@ namespace giftMe.Repositories
         UserProfile GetById(int id);
 
         List<UserProfile> GetAllByDOB();
+        void DeleteUser(int id);
+
+        void UpdateUser(UserProfile userProfile);
     }
 }

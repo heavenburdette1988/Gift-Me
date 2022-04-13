@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { FriendContext } from "../../providers/FriendProvider";
 import Friend from "./Friend";
+import './Friend.css'
 
 export const FriendList = () => {
   const { Friends, getAllFriends } = useContext(FriendContext);
@@ -16,7 +17,7 @@ export const FriendList = () => {
 
   return (
     
-    <div className="container">
+    <div className="FriendContainer">
       <div className="row justify-content-center">
         <div className="cards-column">
           <h2>Friends</h2>

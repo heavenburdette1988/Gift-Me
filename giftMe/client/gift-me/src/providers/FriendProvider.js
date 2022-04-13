@@ -19,7 +19,7 @@ export const FriendProvider =(props) =>{
   };
 
   const addFriend = (friend) => {
-  
+  debugger
     return fetch(`${apiUrl}/api/Friend`, {
       method: "POST",
       headers: {
