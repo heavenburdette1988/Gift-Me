@@ -14,10 +14,9 @@ code {
 }
 
 
-body{
-  background-color: #edc787;
+#root{
+  background-color: #edc7b7;
+  width: 150vw;
+  height: 175vh;
 }
 
-.mainContainer{
-  background-color: #EDC7b7;
-}

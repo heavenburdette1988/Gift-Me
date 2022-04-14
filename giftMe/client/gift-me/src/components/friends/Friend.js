@@ -49,6 +49,7 @@ const handleUnfriend = () => {
 
   return (
 <div className="FriendCard">
+  <div className="Friends"></div>
     <Card style={{ width: '18rem' }}>
      
     <Link  to={`/user/${FriendProp.userProfiles[0].id}`}>
