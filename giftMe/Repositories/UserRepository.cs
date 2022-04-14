@@ -207,72 +207,58 @@ namespace giftMe.Repositories
             }
         }
 
-//        public List<UserProfile> Search(string criterion, bool sortDescending)
-//        {
-//            using (var conn = Connection)
-//            {
-//                conn.Open();
-//                using (var cmd = conn.CreateCommand())
-//                {
-//                    var sql =
-//                        @" SELECT up.Id as UserId, up.DisplayName as displayName, up.FirstName as firstName, up.LastName as LastName, up.Email as Email, up.ImageLocation as imageLocation, up.About as About, up.CreateDateTime as createDate, up.DateOfBirth as DOB, f.id as friendId, f.subscriberUserId as subscriberUserId, f.ProfileUserId as  ProfileUserId
-//                          FROM UserProfile up
-//                          Left join Friends f on f.ProfileUserID = up.Id
-//                        WHERE p.Title LIKE @Criterion OR p.Caption LIKE @Criterion
-                
-                        
+        public List<UserProfile> SearchUser(string criterion, bool sortDescending)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    var sql =
+                        @" SELECT up.Id as UserId, up.DisplayName as displayName, up.FirstName as firstName, up.LastName as LastName, up.Email as Email, up.ImageLocation as imageLocation, up.About as About, up.CreateDateTime as createDate, up.DateOfBirth as DOB, f.id as friendId, f.subscriberUserId as subscriberUserId, f.ProfileUserId as  ProfileUserId
+                          FROM UserProfile up
+                          Left join Friends f on f.ProfileUserID = up.Id
+                        WHERE up.DisplayName LIKE @Criterion OR up.FirstName LIKE @Criterion OR up.LastName LIKE @Criterion ";
 
+                    if (sortDescending)
+                    {
+                        sql += " ORDER BY up.CreateDateTime DESC";
+                    }
+                    else
+                    {
+                        sql += " ORDER BY up.CreateDateTime";
+                    }
 
-//SELECT p.Id AS PostId, p.Title, p.Caption, p.DateCreated AS PostDateCreated, 
-//                        p.ImageUrl AS PostImageUrl, p.UserProfileId,
-//                        up.Name, up.Bio, up.Email, up.DateCreated AS UserProfileDateCreated, 
-//                        up.ImageUrl AS UserProfileImageUrl
-//                    FROM Post p 
-//                        LEFT JOIN UserProfile up ON p.UserProfileId = up.id
-//                    WHERE p.Title LIKE @Criterion OR p.Caption LIKE @Criterion";
+                    cmd.CommandText = sql;
+                    DbUtils.AddParameter(cmd, "@Criterion", $"%{criterion}%");
+                    //wild card $"%{}%
+                    var reader = cmd.ExecuteReader();
 
-//                    if (sortDescending)
-//                    {
-//                        sql += " ORDER BY up.CreateDateTime DESC";
-//                    }
-//                    else
-//                    {
-//                        sql += " ORDER BY up.CreateDateTime";
-//                    }
+                    var users = new List<UserProfile>();
+                    while (reader.Read())
+                    {
+                        users.Add(new UserProfile()
+                        { 
+                        Id = DbUtils.GetInt(reader, "UserId"),
+                            DisplayName = DbUtils.GetString(reader, "displayName"),
+                            FirstName = DbUtils.GetString(reader, "firstName"),
+                            LastName = DbUtils.GetString(reader, "LastName"),
+                            Email = DbUtils.GetString(reader, "Email"),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "createDate"),
+                            DateOfBirth = DbUtils.GetDateTime(reader, "DOB"),
+                            ImageLocation = DbUtils.GetString(reader, "imageLocation"),
+                            About = DbUtils.GetString(reader, "About")
+                       
+                           
+                        });
+                    }
 
-//                    cmd.CommandText = sql;
-//                    DbUtils.AddParameter(cmd, "@Criterion", $"%{criterion}%");
-//                    //wild card $"%{}%
-//                    var reader = cmd.ExecuteReader();
+                    reader.Close();
 
-//                    var posts = new List<Post>();
-//                    while (reader.Read())
-//                    {
-//                        posts.Add(new Post()
-//                        {
-//                            Id = DbUtils.GetInt(reader, "PostId"),
-//                            Title = DbUtils.GetString(reader, "Title"),
-//                            Caption = DbUtils.GetString(reader, "Caption"),
-//                            DateCreated = DbUtils.GetDateTime(reader, "PostDateCreated"),
-//                            ImageUrl = DbUtils.GetString(reader, "PostImageUrl"),
-//                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-//                            UserProfile = new UserProfile()
-//                            {
-//                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-//                                Name = DbUtils.GetString(reader, "Name"),
-//                                Email = DbUtils.GetString(reader, "Email"),
-//                                DateCreated = DbUtils.GetDateTime(reader, "UserProfileDateCreated"),
-//                                ImageUrl = DbUtils.GetString(reader, "UserProfileImageUrl"),
-//                            },
-//                        });
-//                    }
-
-//                    reader.Close();
-
-//                    return posts;
-//                }
-//            }
-//        }
+                    return users;
+                }
+            }
+        }
 
         public List<UserProfile> GetAllByDOB()
         {

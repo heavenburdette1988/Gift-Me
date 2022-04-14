@@ -14,5 +14,7 @@ namespace giftMe.Repositories
         void DeleteUser(int id);
 
         void UpdateUser(UserProfile userProfile);
+
+        List<UserProfile> SearchUser(string criterion, bool sortDescending);
     }
 }

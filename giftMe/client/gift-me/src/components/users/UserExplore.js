@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import React, {useContext, useState,  useEffect  } from "react";
 import { FriendContext } from "../../providers/FriendProvider";
 import './User.css'
+
   const UserExplore = ({ UserProp }) => {
 
     const user = JSON.parse(sessionStorage.getItem("userProfile"))
@@ -34,6 +35,9 @@ import './User.css'
           
 
   return (
+
+    
+    
 <div className="ExploreCard">
     <Card style={{ width: '18rem' }}>
    
@@ -48,6 +52,8 @@ import './User.css'
   </Card.Body>
 </Card>
 </div>
+
+
       );
   };
    

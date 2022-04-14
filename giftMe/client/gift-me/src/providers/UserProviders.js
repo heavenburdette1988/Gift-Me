@@ -12,6 +12,7 @@ export const UserProvider =(props) =>{
 
 
   const getAllUserProfiles = () => {
+    debugger
     return fetch(`${apiUrl}/api/User`)
       .then((res) => res.json())
       .then(setUserProfiles);
@@ -74,12 +75,16 @@ export const UserProvider =(props) =>{
         .then(res => res.json())
 
 }
+const searchUserExplore = (query) => {
+  return fetch(`https://localhost:44369/api/User/search?q=${query}`)
+  .then((res) => res.json())
+  .then(setUserProfiles);
+};
 
 
-//https://localhost:44392/api/User/2
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, login, logout, register, getAllUserProfiles,
+    <UserContext.Provider value={{ searchUserExplore,isLoggedIn, login, logout, register, getAllUserProfiles,
                                      userProfiles, userProfile, setUserProfiles, getUser,getUserById, getAllUserProfilesByDOB  }}>
        {props.children}
     </UserContext.Provider>

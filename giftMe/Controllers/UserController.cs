@@ -89,5 +89,11 @@ namespace giftMe.Controllers
             _userRepository.DeleteUser(id);
             return NoContent();
         }
+
+        [HttpGet("search")]
+        public IActionResult Search(string q, bool sortDesc)
+        {
+            return Ok(_userRepository.SearchUser(q, sortDesc));
+        }
     }
 }

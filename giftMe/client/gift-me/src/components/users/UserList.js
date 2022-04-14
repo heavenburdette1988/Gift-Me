@@ -6,6 +6,7 @@ import UserExplore from "./UserExplore";
 import User from "./UserExplore";
 import './User.css'
 
+
 export const UserList = () => {
   const { getAllUserProfiles, userProfiles } = useContext(UserContext);
 
@@ -27,8 +28,12 @@ export const UserList = () => {
   return (
 
     <div className="UserListContainer">
+      
       <div className="row justify-content-center">
       <h1>Explore</h1>
+      <div>
+   
+      </div>
         <div className="cards-ExploreColumn">
        
           {userProfiles.filter(x => !myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map((singleUserInLoop) => (
