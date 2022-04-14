@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -13,3 +14,10 @@ code {
 }
 
 
+body{
+  background-color: #edc787;
+}
+
+.mainContainer{
+  background-color: #EDC7b7;
+}

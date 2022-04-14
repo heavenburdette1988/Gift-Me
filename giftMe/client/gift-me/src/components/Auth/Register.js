@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../providers/UserProviders";
+import { NavLink } from "react-bootstrap";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function Register() {
  };
 
   return (
+    <>
     <Form onSubmit={registerClick}>
       <fieldset>
         <FormGroup>
@@ -74,7 +76,11 @@ export default function Register() {
         <FormGroup>
           <Button>Register</Button>
         </FormGroup>
-      </fieldset>
+             </fieldset>
     </Form>
+    <Link to="/login">Back to login</Link>
+    </>
+   
+    
   );
 }

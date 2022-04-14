@@ -39,9 +39,9 @@ import './User.css'
     
     
 <div className="ExploreCard">
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem' }} className="indivExploreCards">
    
-  <Card.Img variant="top" src={UserProp.imageLocation} />
+  <Card.Img variant="top" src={UserProp.imageLocation} className="exploreProfileImg" />
   <Card.Body>
     <Card.Title>{UserProp.displayName}</Card.Title>
     <Card.Text>

@@ -15,7 +15,7 @@ const Header = () => {
       {isLoggedIn &&
       <>
       <Link to="/userDashboard" className="navbar-brand">
-        Gift Me
+        Gift Share
       </Link>
       <ul className="navbar-nav mr-auto">
       <li className="nav-item">

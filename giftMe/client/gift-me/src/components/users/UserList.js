@@ -33,7 +33,7 @@ export const UserList = () => {
       <h1>Explore</h1>
       <div>
    
-      </div>
+   
         <div className="cards-ExploreColumn">
        
           {userProfiles.filter(x => !myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map((singleUserInLoop) => (
@@ -42,6 +42,7 @@ export const UserList = () => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

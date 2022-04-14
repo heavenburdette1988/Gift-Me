@@ -7,8 +7,11 @@
     display: grid;
     grid-template-columns: 300px 350px 200px;
     text-align: center;
-    width: 50vw;
+    width: 100vw;
     height: 50vh; 
+    /* border: green solid 1px; */
+    
+     
     
    
 }
@@ -17,7 +20,12 @@
     padding: 16px;
     height: 250px;
     margin: 5px;
+  /* border: blue solid 1px; */
     text-align: center;
+    overflow:scroll;
+    width: 125%;
+  height: 700px;
+ 
     
   /* float: right;
   position: relative; 
@@ -28,10 +36,16 @@
     padding: 16px;
     height: 250px;
     margin: 5px;
+    /* border: blue solid 1px; */
     text-align: center;
+    overflow:scroll;
+    width:120%;
+    height: 700px;
+  
+
   /* float: right;
   position: relative; 
-  left: 800px;
+  
   top: -350px; */
 } 
 
@@ -39,8 +53,8 @@
     padding: 16px;
     height: 250px;
     margin: 5px;
-    /* float: right;
-    position: relative; 
+    overflow:scroll;
+    width:auto;
+  height:auto;
    
-    top: -350px; */
 } 

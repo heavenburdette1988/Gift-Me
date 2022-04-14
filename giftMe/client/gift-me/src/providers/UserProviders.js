@@ -7,6 +7,7 @@ export const UserProvider =(props) =>{
 
   const apiUrl = "https://localhost:44392";
   const [userProfiles, setUserProfiles] = useState([]);
+  const [userProfilesForSideBar, setUserProfilesForSideBar] = useState([]);
   const userProfile = sessionStorage.getItem("userProfile");
   const [isLoggedIn, setIsLoggedIn] = useState(userProfile != null);
 
@@ -21,7 +22,7 @@ export const UserProvider =(props) =>{
   const getAllUserProfilesByDOB = () => {
     return fetch(`${apiUrl}/api/User/GetByDOB`)
       .then((res) => res.json())
-      .then(setUserProfiles);
+      .then(setUserProfilesForSideBar);
   };
  
   const getUser = (id) => {
@@ -84,7 +85,7 @@ const searchUserExplore = (query) => {
 
 
   return (
-    <UserContext.Provider value={{ searchUserExplore,isLoggedIn, login, logout, register, getAllUserProfiles,
+    <UserContext.Provider value={{ userProfilesForSideBar, searchUserExplore,isLoggedIn, login, logout, register, getAllUserProfiles,
                                      userProfiles, userProfile, setUserProfiles, getUser,getUserById, getAllUserProfilesByDOB  }}>
        {props.children}
     </UserContext.Provider>

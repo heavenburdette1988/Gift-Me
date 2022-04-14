@@ -10,6 +10,7 @@
 } */
 
 .cards-ExploreColumn{
+  
     display: flex;
     padding: 50px;
     margin: 5px;
@@ -32,9 +33,31 @@
 }
 
 .UserProfileMainContainer{
+ 
     display: grid;
     grid-template-columns: 300px 350px 200px;
     text-align: center;
     width: 50vw;
     height: 50vh;
+}
+
+.UserListContainer{
+  
+    width: 100vw;
+}
+.cards-ExploreColumn{
+    
+    width: 100vw; 
+    height: 100vh;
+}
+
+.ExploreCard{
+    justify-content: center;
+   border: red solid 2px;
+}
+
+.exploreProfileImg{
+    
+    width: 5px;
+    height: 15vw;
 }

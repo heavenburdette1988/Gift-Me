@@ -12,7 +12,7 @@ import { FriendContext } from "../../providers/FriendProvider";
 
 const EventList = () => {
     
-    const { getAllUserProfilesByDOB, userProfiles } = useContext(UserContext);
+    const { getAllUserProfilesByDOB, userProfilesForSideBar } = useContext(UserContext);
     
     const { Friends, getAllFriends } = useContext(FriendContext);
     const currentUser = JSON.parse(sessionStorage.getItem("userProfile"))
@@ -39,7 +39,7 @@ const EventList = () => {
     <h2 className="EventTitle">Upcoming Birthdays</h2>
 
         {
-            userProfiles.filter(x => myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map(u => {
+            userProfilesForSideBar.filter(x => myfriendList.some(y => y.profileUserId === x.id) && x.id !== currentUser.id).map(u => {
     
                
                    return (<Event key={u.id} eventProp={u} />)
