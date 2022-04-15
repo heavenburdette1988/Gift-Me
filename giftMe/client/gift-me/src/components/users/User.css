@@ -13,6 +13,9 @@
 } */
 
 
+
+
+
 .cards-ExploreColumn{
   
     display: flex;
@@ -36,8 +39,11 @@
     
 }
 
+
+
 .UserProfileMainContainer{
- 
+    padding-left: 20px;
+    padding-top: 50px;
     display: grid;
     grid-template-columns: 300px 350px 200px;
     text-align: center;
@@ -57,7 +63,7 @@
 
 .ExploreCard{
     justify-content: center;
-   border: red solid 2px;
+ 
    margin: 15px;
 }
 

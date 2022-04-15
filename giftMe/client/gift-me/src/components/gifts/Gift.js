@@ -97,7 +97,7 @@ const Gift = ({ giftProp }) => {
             className="GiftCardStyle"
            type="switch"
     id="itemReceived"
-    onChange={handleReceived} required  className="form-control" />{giftProp.itemReceived === false ? <>Mark item when received</> : <>Mark item as not received</>}
+    onChange={handleReceived} required   />{giftProp.itemReceived === false ? <>Mark item when received</> : <>Mark item as not received</>}
  </InputGroup>  
   : null}
 </div>

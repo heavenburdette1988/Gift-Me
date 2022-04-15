@@ -59,14 +59,15 @@ return (
     <FriendList/>
     </div>
     </div>
-    
+
+   
     <Offcanvas show={show} onHide={handleClose}>
     <div className="EventListColumn">
       <EventList/>
-    </div>
-    </Offcanvas>
-   
+      </div>
  
+    </Offcanvas>
+    
 
    
     </>   

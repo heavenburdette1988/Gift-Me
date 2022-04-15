@@ -1,5 +1,6 @@
 import React, {useContext, useEffect  } from "react";
 // import { Card, CardImg, CardBody } from "reactstrap";
+import './Event.css';
 
 import {   Link, useNavigate,   } from "react-router-dom";
 
@@ -22,7 +23,7 @@ const Event = ({ eventProp }) => {
   
 
   return (
-   
+<div className="EventCardMain">
 <Card style={{ width: '18rem' }}>
 <Link to={`/user/${eventProp.id}`}>
 <Card.Img variant="top" src={eventProp.imageLocation} alt={eventProp.displayName} />
@@ -35,7 +36,7 @@ const Event = ({ eventProp }) => {
 <a href="https://www.postable.com/cards?gclid=Cj0KCQjwxtSSBhDYARIsAEn0thTBQTku7mQNb7IHg30sQUWTym4ackWJIsqJQaAyvx13laxDRVKhDXMaAqdUEALw_wcB" target="_blank" rel="noreferrer">Send {eventProp.firstName} a card</a>
   </Card.Body>
       </Card>
-     
+      </div>
   );
 };
 

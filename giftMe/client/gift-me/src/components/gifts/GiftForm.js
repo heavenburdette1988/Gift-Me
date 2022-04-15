@@ -81,6 +81,7 @@ useEffect(()=> {
         <form className="giftForm">
             {/* form tags sends http request back to controller so that is why we used preventdefault  - telling form do not send anything to server bc we want to send the http request*/}
             <h2>New Gift</h2>
+            <div className="giftFormBackground">
             <fieldset>
                 <div className="formGroup">
                 <label htmlFor="title">Gift Title</label>
@@ -123,6 +124,7 @@ useEffect(()=> {
                         <button type="submit" className="btn btn-primary" onClick={() => navigate("/userDashboard")}>
                             Back to List
                         </button>
+                    </div>
                     </div>
                     </div>
         </form>

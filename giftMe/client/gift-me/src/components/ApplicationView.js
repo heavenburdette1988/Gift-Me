@@ -15,6 +15,8 @@ import { UserList } from "./users/UserList";
 import UserProfile from "./users/UserProfile";
 import UserGiftList from "./users/UserGiftList";
 import './users/User.css'
+import '../index.js'
+
 
 
 
@@ -34,23 +36,21 @@ export default function ApplicationViews() {
     }
     else{
      return(
+       <div className="backgroundImage">
        <UserProvider>
       <GiftProvider>
       <FriendProvider>
             <Routes>
-       
             <Route path="/userDashboard" element={<GiftList/>} /> 
             <Route path="/add/gifts" element={<GiftForm />} /> 
             <Route path="gifts/edit/:giftId/*" element={<GiftForm />} />   
             <Route path="/users" element={<UserList/>} />   
-           
-            <Route path="/user/:userId" element={ <UserProfile/> } />   
-            
+            <Route path="/user/:userId" element={ <UserProfile/> } />           
           </Routes>
           </FriendProvider>
           </GiftProvider>
       </UserProvider>
-  
+      </div>
   
      );
     }

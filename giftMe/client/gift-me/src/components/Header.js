@@ -1,18 +1,22 @@
 
 
 import React, {  useContext } from 'react';
-import { Button } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProviders";
+import '../index.css'
 
 const Header = () => {
   const { isLoggedIn, logout } = useContext(UserContext);
   
   return (
 
+<div >
+    {/* <nav className="navbar navbar-expand navbar-dark bg-info">
+     */}
 
-    <nav className="navbar navbar-expand navbar-dark bg-info">
-      {isLoggedIn &&
+<Navbar  className='NavBar'>
+        {isLoggedIn &&
       <>
       <Link to="/userDashboard" className="navbar-brand">
         Gift Share
@@ -39,7 +43,9 @@ const Header = () => {
       </>
 }
 
-    </nav>
+    {/* </nav> */}
+    </Navbar>
+    </div>
 
   );
 };
