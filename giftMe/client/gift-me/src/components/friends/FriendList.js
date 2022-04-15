@@ -3,6 +3,7 @@ import { FriendContext } from "../../providers/FriendProvider";
 import Friend from "./Friend";
 import './Friend.css'
 
+
 export const FriendList = () => {
   const { Friends, getAllFriends } = useContext(FriendContext);
   //state varible^^  we do this with info that will change like adding a post to post
@@ -17,10 +18,10 @@ export const FriendList = () => {
 
   return (
     
-    <div className="FriendContainer">
+    <div className="FriendList">
       <div className="row justify-content-center">
         <div className="cards-column">
-          <h2>Friends</h2>
+          <h2 className="friendTitle">Friends</h2>
           {Friends.filter(x => x.subscriberUserId === user.id).map((singleFriendInLoop) =>  (
        
             <Friend key={singleFriendInLoop.id} FriendProp={singleFriendInLoop} />

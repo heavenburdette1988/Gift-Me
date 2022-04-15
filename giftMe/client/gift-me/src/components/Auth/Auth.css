@@ -1,0 +1,33 @@
+.login{
+    width: 25vw;
+margin:150px;
+background-color: #eee2dc;
+border: #bab2b5 solid 3px ;
+padding: 30px;
+
+}
+.register{
+   width: 60vw;
+   
+   margin-left: 13%;
+   padding: 2%;
+   align-items: flex-end;
+   border: #bab2b5 solid 3px ;
+   background-color: #eee2dc;
+}
+
+
+
+.loginImage{
+    background-image: url("./images/Gift\ Share.png") ;
+    width:40vw;
+    margin: 50px;
+    float: right;
+    background-repeat: no-repeat;
+ 
+}
+
+.loginMain{
+    display: flex;
+ 
+}

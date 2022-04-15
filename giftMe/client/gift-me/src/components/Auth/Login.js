@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../../providers/UserProviders";
+import './Auth.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -25,6 +26,9 @@ export default function Login() {
   };
 
   return (
+    <div className="loginMain">
+    <div className="loginImage"> </div>
+       <div className="login">
     <Form onSubmit={loginSubmit}>
       <fieldset>
         <FormGroup>
@@ -43,5 +47,8 @@ export default function Login() {
         </em>
       </fieldset>
     </Form>
+    </div>
+    
+    </div>
   );
 }

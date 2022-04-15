@@ -5,6 +5,7 @@ import { FriendContext } from "../../providers/FriendProvider";
 import { UserContext } from "../../providers/UserProviders";
 import './Friend.css'
 import '../users/User.css'
+import '../gifts/Gift.css'
 
  const Friend = ({ FriendProp }) => {
 
@@ -48,10 +49,10 @@ const handleUnfriend = () => {
      }
 
   return (
-<div className="FriendCard">
-  <div className="Friends"></div>
+<div className="FriendCardMain">
+  
     <Card style={{ width: '18rem' }}>
-     
+    <div className="FriendCard">
     <Link  to={`/user/${FriendProp.userProfiles[0].id}`}>
   <Card.Img variant="top"  src={FriendProp.userProfiles[0].imageLocation} />
   </Link> 
@@ -73,7 +74,7 @@ const handleUnfriend = () => {
 <Button variant="primary" onClick={handleAddFriend}>Add Friend</Button>
  : null}
   </Card.Body>
-
+  </div>
   <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Are you sure you want to unfriend {FriendProp.userProfiles[0].displayName}?</Modal.Title>

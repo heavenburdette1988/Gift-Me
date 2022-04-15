@@ -44,7 +44,7 @@ export default function ApplicationViews() {
             <Route path="gifts/edit/:giftId/*" element={<GiftForm />} />   
             <Route path="/users" element={<UserList/>} />   
            
-            <Route path="/user/:userId" element={ <div className="UserProfileMainContainer"><UserProfile/><UserGiftList/></div> } />   
+            <Route path="/user/:userId" element={ <UserProfile/> } />   
             
           </Routes>
           </FriendProvider>

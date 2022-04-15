@@ -18,5 +18,11 @@ code {
   background-color: #edc7b7;
   width: 150vw;
   height: 175vh;
+background-image: url("./components/Auth/images/Gift\ Share.png");
+background-repeat: no-repeat;
+background-position-x: center;
+background-size: 50%;
+background-attachment: fixed;
+font-family: ;
 }
 

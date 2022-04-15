@@ -1,5 +1,5 @@
 .giftList{
-    padding: 16px;
+    /* padding: 16px; */
      /* display: flex; */
     /* align-items: center;
     flex-direction: column;
@@ -9,40 +9,63 @@
     text-align: center;
     width: 100vw;
     height: 50vh; 
-    /* border: green solid 1px; */
     
      
-    
-   
+      
 }
 
 .giftListColumn{
-    padding: 16px;
+ 
     height: 250px;
-    margin: 5px;
-  /* border: blue solid 1px; */
+    margin-left: 70%;
     text-align: center;
     overflow:scroll;
-    width: 125%;
+    width: 105%;
   height: 700px;
- 
-    
+
+  scroll-behavior: smooth;
   /* float: right;
   position: relative; 
   left: 800px;
   top: -350px; */
 } 
+
+/* .GiftCardStyle{
+
+} */
+.giftCardMain{
+   margin-bottom: 5px;
+   position: relative;
+   background-color: #bab2b5;
+}
+
+.giftCard{
+  background-color: #eee2dc;
+  height: 100%;
+  width: 104%;
+ border: bab2b5 solid 2px;
+  right: 0;
+  top: 0;
+ 
+}
+.GiftTitle{
+  background-color:#eee2dc ;
+  color: #123C69;
+  padding: 10px;
+ 
+ 
+}
  .friendListColumn{
-    padding: 16px;
+   
     height: 250px;
-    margin: 5px;
+ margin-left: 170%;
     /* border: blue solid 1px; */
     text-align: center;
     overflow:scroll;
-    width:120%;
+    width:86%;
     height: 700px;
   
-
+    scroll-behavior: smooth;
   /* float: right;
   position: relative; 
   
@@ -54,7 +77,13 @@
     height: 250px;
     margin: 5px;
     overflow:scroll;
+    scroll-behavior: smooth;
     width:auto;
   height:auto;
    
 } 
+
+.dashboard-buttons{
+  margin-right: 31%;
+ 
+}

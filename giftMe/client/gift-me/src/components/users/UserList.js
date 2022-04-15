@@ -30,7 +30,7 @@ export const UserList = () => {
     <div className="UserListContainer">
       
       <div className="row justify-content-center">
-      <h1>Explore</h1>
+      <h1 className="Explore Title">Explore</h1>
       <div>
    
    

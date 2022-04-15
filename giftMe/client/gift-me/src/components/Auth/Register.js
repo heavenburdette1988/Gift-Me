@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../providers/UserProviders";
-import { NavLink } from "react-bootstrap";
+import './Auth.css';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ export default function Register() {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
+
   const registerClick = (e) => {
      e.preventDefault();
       if (password && password !== confirmPassword) {
@@ -33,6 +34,7 @@ export default function Register() {
 
   return (
     <>
+    <div className="register">
     <Form onSubmit={registerClick}>
       <fieldset>
         <FormGroup>
@@ -79,6 +81,7 @@ export default function Register() {
              </fieldset>
     </Form>
     <Link to="/login">Back to login</Link>
+    </div>
     </>
    
     

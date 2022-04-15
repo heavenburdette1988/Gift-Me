@@ -1,18 +1,21 @@
-/* .FriendCard{
-    width: 475px;
-    height: 475px;;
-    background-color: #F7F4F2;
-    align-items: center;
-    margin-left: 25%;
-    margin-bottom: 22%;
-} */
+.FriendCardMain{
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #bab2b5;
+   
+}
 
-
-/* .Friends{
-    width: 475px;
-    height: 475px;
-    
-    align-items: center;
-    margin-left: 25%;
-    margin-bottom: 22%;
-} */
+.FriendCard{
+    background-color: #eee2dc;
+    height: 100%;
+    width: 104%;
+   border: bab2b5 solid 2px;
+    right: 0;
+    top: 0;
+ 
+}
+.friendTitle{
+    background-color:#eee2dc ;
+    color: #123C69;
+    padding: 10px;
+}

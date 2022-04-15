@@ -8,6 +8,10 @@
   top: -1050px;
 
 } */
+/* .UserProfileMain{
+    display: flex;
+} */
+
 
 .cards-ExploreColumn{
   
@@ -54,10 +58,11 @@
 .ExploreCard{
     justify-content: center;
    border: red solid 2px;
+   margin: 15px;
 }
 
 .exploreProfileImg{
     
-    width: 5px;
+    width: 20.5vw;
     height: 15vw;
 }

@@ -32,18 +32,20 @@ const user = JSON.parse(sessionStorage.getItem("userProfile"))
 
 return (
  <>
+ <div className="dashboard-buttons">
   {console.log("GiftList: Render", Gifts)}
-      <Button outline onClick={() => navigate(`/add/gifts/`)}>
+      <Button variant="primary" onClick={() => navigate(`/add/gifts/`)}>
     Create New
   </Button>
   {' '}
   <Button variant="primary" onClick={handleShow} >
         Birthdays
       </Button>
-
+      </div>
   <div className="giftList">
   <div className="giftListColumn">
-  <h2>Gift List</h2>
+    
+  <h2 className="GiftTitle">Gift List</h2>
       {
         Gifts.filter(g => g.userId === user.id).map(singleGiftInLoop => {
         

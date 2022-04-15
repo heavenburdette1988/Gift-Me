@@ -8,7 +8,7 @@ import { GiftContext } from "../../providers/GiftProvider";
 
 import { Form,  } from "react-bootstrap";
 import { UserContext } from "../../providers/UserProviders";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
+
 import './Gift.css'
 
 
@@ -54,10 +54,13 @@ const Gift = ({ giftProp }) => {
 
 //added conditional on buttons to keep logged in user from being able to change friends gifts
   return (
-  
-<Card style={{ width: '18rem' }} className="giftCard">
+  <div className="giftCardMain">
+<Card style={{ width: '18rem' }} >
+  <div className="giftCard">
 <Card.Img variant="top" src={giftProp.imageLocation} alt={giftProp.title} />
+
 <Card.Body>
+<div className="GiftCardStyle">
   <Card.Title>Purchase for {giftProp.userProfile.displayName}: </Card.Title>
   <Card.Title><a href={giftProp.url} target="blank">{giftProp.title} </a></Card.Title>
    <Card.Text>
@@ -82,21 +85,22 @@ const Gift = ({ giftProp }) => {
   </Button>
 : null}
 
-
+</div>
 
 </Card.Body>
 
-  
+<div className="GiftCardStyle">
 {!userId ? 
 <InputGroup className="mb-3">
 
             <Form.Check
+            className="GiftCardStyle"
            type="switch"
     id="itemReceived"
     onChange={handleReceived} required  className="form-control" />{giftProp.itemReceived === false ? <>Mark item when received</> : <>Mark item as not received</>}
  </InputGroup>  
   : null}
-
+</div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -112,8 +116,9 @@ const Gift = ({ giftProp }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+      </div>
       </Card>
-
+      </div>
   );
 };
 
