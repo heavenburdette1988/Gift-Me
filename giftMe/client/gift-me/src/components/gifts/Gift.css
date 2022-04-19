@@ -1,0 +1,99 @@
+.giftList{
+    /* padding: 16px; */
+     /* display: flex; */
+    /* align-items: center;
+    flex-direction: column;
+    justify-content: flex-start; */
+    display: grid;
+    grid-template-columns: 300px 350px 200px;
+    text-align: center;
+    width: 100vw;
+    height: 50vh; 
+    
+     
+      
+}
+
+.giftListColumn{
+ 
+    height: 250px;
+    margin-left: 70%;
+    text-align: center;
+    overflow:scroll;
+    width: 105%;
+  height: 700px;
+
+  scroll-behavior: smooth;
+  /* float: right;
+  position: relative; 
+  left: 800px;
+  top: -350px; */
+} 
+
+/* .GiftCardStyle{
+
+} */
+
+.giftForm{
+  width: 50vw;
+margin-left:375px;
+margin-top: 100px;
+}
+
+.giftFormBackground{
+  background-color: #eee2dc;
+  padding: 10px;
+}
+.giftCardMain{
+   margin-bottom: 5px;
+   position: relative;
+   background-color: #bab2b5;
+}
+
+.giftCard{
+  background-color: #eee2dc;
+  height: 100%;
+  width: 104%;
+ border: bab2b5 solid 2px;
+  right: 0;
+  top: 0;
+ 
+}
+.GiftTitle{
+  background-color:#eee2dc ;
+  color: #123C69;
+  padding: 10px;
+ 
+ 
+}
+ .friendListColumn{
+   
+    height: 250px;
+ margin-left: 170%;
+    /* border: blue solid 1px; */
+    text-align: center;
+    overflow:scroll;
+    width:86%;
+    height: 700px;
+  
+    scroll-behavior: smooth;
+
+  
+ 
+} 
+
+.EventListColumn{
+  background-color:#eee2dc ;
+    padding: 16px;
+
+    margin: 20px;
+    overflow:scroll;
+    scroll-behavior: smooth;
+ 
+   
+} 
+
+.dashboard-buttons{
+  margin-right: 31%;
+ 
+}

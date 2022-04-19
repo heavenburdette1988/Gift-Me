@@ -5,9 +5,35 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #edc7b7;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+#root{
+  background-color: #edc7b7;
+  width: 150vw;
+  height: 500vh;
+
+font-family: 'Amatic SC', cursive;
+}
+
+.backgroundImage{
+  background-image: url("./components/Auth/images/Gift\ Share.png");
+ ;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+}
+
+.NavBar {
+  background-color: #eee2dc ;
+  color: #123C69;
+ font-size: x-large
+}
+

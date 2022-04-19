@@ -1,0 +1,22 @@
+.FriendCardMain{
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #bab2b5;
+   
+}
+
+.FriendCard{
+    background-color: #eee2dc;
+    height: 100%;
+    width: 104%;
+   border: bab2b5 solid 2px;
+    right: 0;
+    top: 0;
+
+ 
+}
+.friendTitle{
+    background-color:#eee2dc ;
+    color: #123C69;
+    padding: 10px;
+}
