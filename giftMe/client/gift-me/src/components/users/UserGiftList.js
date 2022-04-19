@@ -33,7 +33,7 @@ const UserGiftList = () => {
     return (
 <>
 <div className="UserGiftColumn">
-<h2>Gifts </h2>
+<h2 className="giftTitle">Gifts </h2>
 <div className="userGiftList">
         {
             Gifts.filter(g => g.userId === +userId).map(g => {

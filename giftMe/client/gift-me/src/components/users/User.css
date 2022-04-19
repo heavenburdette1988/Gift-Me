@@ -25,30 +25,47 @@
 }
 .UserGiftColumn{
     padding: 50px;
-    height: 250px;
-    margin: 5px;
+    height: 800px;
+    width: 105%;
     text-align: center;
+    overflow:scroll;
+    margin-left: 160%;
+    
+    
 } 
 
-.cards-FriendColumn{
-    padding: 50px;
-    height: 250px;
-    margin: 15px;
-    text-align: center;
- 
-    
+.giftTitle{
+    background-color: #eee2dc;
 }
 
 
+.FriendsUserList{
+    width: 335px;
+}
+.cards-FriendColumn{
+    padding: 50px;
+    height: 900px;
+      margin: 15px;
+    text-align: center;
+ overflow: scroll;
+    
+}
+
+.userProfile{
+    margin-left: 30%;
+    margin-top: 18%;
+}
+
 
 .UserProfileMainContainer{
-    padding-left: 20px;
-    padding-top: 50px;
+    /* padding-left: 20px;
+    padding-top: 50px; */
     display: grid;
     grid-template-columns: 300px 350px 200px;
     text-align: center;
     width: 50vw;
     height: 50vh;
+   
 }
 
 .UserListContainer{
